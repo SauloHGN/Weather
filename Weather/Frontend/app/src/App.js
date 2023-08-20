@@ -1,15 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+//import logo from './logo.svg';
+//import './App.css';
 
-function App() 
+import Home from '../src/pages/Home'
+
+export default function App() 
 {
   return (
-    <div className="App">
-      <header className="App-header">
-       Teste
-      </header>
-    </div>
+    <Home/>
   );
 }
 
-export default App;
+//export default App;
