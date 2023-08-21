@@ -6,7 +6,7 @@ export default function Home()
     return(
         <View style= {styles.container}>
             <Header/>
-            <Text>Home Page</Text>
+            <Text></Text>
         </View>
     );
 }
