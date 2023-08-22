@@ -5,7 +5,7 @@ import { StyleSheet, View, Text, StatusBar, TouchableOpacity } from 'react-nativ
 
 const statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22 : 44;
 
-export default function Header()
+export default function Header({temperatura, clima, maxTemp, minTemp, loc, sensacao})
 {
     return(
         <View style= {styles.container}>
@@ -16,17 +16,17 @@ export default function Header()
        
             <View style = {styles.content}>
 
-            <Text style={styles.temperatura}> 20º</Text>
-            <Text style={styles.clima}> Nublado</Text>
+            <Text style={styles.temperatura}> {temperatura}</Text>
+            <Text style={styles.clima}> {clima}</Text>
             
             <Text style={styles.localizacao}>
             {"\n"}
             <FaLocationDot name="localização" size={15} color="#FFF"/>
-            Cruzeiro
+            {loc}
             </Text>
 
             <Text style={styles.infos}>
-            25º/18º  Sensação térmica de 22º
+            {maxTemp}/{minTemp}  Sensação térmica de {sensacao}
             </Text>
             
             </View>
