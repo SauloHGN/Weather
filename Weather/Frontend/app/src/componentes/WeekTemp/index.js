@@ -46,6 +46,31 @@ export default function WeekTemp()
             <Text style= {styles.sub}> Min Temp</Text>
             </View>
 
+            <View style= {styles.item}>
+            <Text style= {styles.sub}>Sabado</Text>
+            <Text style= {styles.sub}>0%</Text>
+            <Text style= {styles.sub}> icon</Text>
+            <Text style= {styles.sub}> Max Temp</Text>
+            <Text style= {styles.sub}> Min Temp</Text>
+            </View>
+
+            <View style= {styles.item}>
+            <Text style= {styles.sub}>Domingo</Text>
+            <Text style= {styles.sub}>0%</Text>
+            <Text style= {styles.sub}> icon</Text>
+            <Text style= {styles.sub}> Max Temp</Text>
+            <Text style= {styles.sub}> Min Temp</Text>
+            </View>
+
+            <View style= {styles.item}>
+            <Text style= {styles.sub}>Segunda-Feira</Text>
+            <Text style= {styles.sub}>0%</Text>
+            <Text style= {styles.sub}> icon</Text>
+            <Text style= {styles.sub}> Max Temp</Text>
+            <Text style= {styles.sub}> Min Temp</Text>
+            </View>
+
+            
         </View>
     )
 }
@@ -54,27 +79,32 @@ const styles = StyleSheet.create
 ({
     container:
     {
+        flex: 1,
         backgroundColor: '#46474a',
         flexDirection: 'column',
         justifyContent: 'center',
         marginTop: 10,
         marginStart: 14,
         marginEnd: 14,
-        paddingRight: 14,
-        paddingBottom: 32,
-        borderRadius: 10
+        paddingTop: 5,
+        paddingBottom: 15,
+        borderRadius: 15
         
     },
     item:
     {
         flexDirection: 'row',
-        alignItems: 'center',     
+        alignItems: 'center', 
+        marginTop: 5,
         paddingStart: 10,
         paddingEnd: 10,
     },
     sub:
     {
-        paddingLeft: 20,
+        flex:1,
+        alignItems:'center',
+        paddingStart: 5,
+        paddingEnd: 5
     },
   
 })

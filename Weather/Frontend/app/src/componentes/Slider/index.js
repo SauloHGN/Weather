@@ -140,11 +140,14 @@ const styles = StyleSheet.create
         flexDirection: 'row',
         paddingStart: 10,
         paddingEnd: 20,
-        marginTop: 5,
+        paddingBottom: 10,
+        paddingTop: 10,
+        marginTop: 10,
         marginBottom: 10,
         marginStart: 12,
         marginEnd: 12,
-        borderRadius: 10,
+        borderRadius: 15,
+
     },
     scrollView: {
         width: '100%',

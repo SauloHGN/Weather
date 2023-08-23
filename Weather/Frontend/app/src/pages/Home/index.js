@@ -1,7 +1,9 @@
 import { StyleSheet, View, Text } from 'react-native';
-import Header from '../../componentes/Header'
+import Header from '../../componentes/Header';
 import Slider from '../../componentes/Slider';
 import WeekTemp from '../../componentes/WeekTemp';
+import Circles from '../../componentes/Circles';
+import SunTime from '../../componentes/SunTime';
 
 export default function Home()
 {
@@ -10,8 +12,10 @@ export default function Home()
             <Header temperatura ="17º" clima="Parc. Nublado" maxTemp="20º" minTemp="12º" loc="Londres" sensacao="16º"/>
             
             <Slider/>
-
             <WeekTemp/>
+            <Circles/>
+            <SunTime/>
+
             <Text></Text>
         </View>
     );

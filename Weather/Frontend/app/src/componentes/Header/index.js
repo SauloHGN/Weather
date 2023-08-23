@@ -72,5 +72,8 @@ const styles = StyleSheet.create
     {
         color:'#FFF',
         fontSize: 14,
+    },
+    buttonMenu:{
+        marginTop: -10
     }
 })
