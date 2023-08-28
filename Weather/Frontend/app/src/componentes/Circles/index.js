@@ -68,7 +68,7 @@ const styles = StyleSheet.create
         alignItems: 'center',
         flexDirection: 'column',
         marginTop: 15,
-        paddingBottom: 15,
+        paddingBottom: 10,
         paddingStart: 10,
         paddingEnd: 25,
       

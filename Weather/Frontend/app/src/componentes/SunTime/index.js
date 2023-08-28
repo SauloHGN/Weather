@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text} from 'react-native';
 
-export default function Circles()
+export default function SunTime()
 {
 
     return(
@@ -21,11 +21,12 @@ const styles = StyleSheet.create
         paddingStart: 10,
         paddingEnd: 20,
         paddingBottom: 10,
-        paddingTop: 10,
+        paddingTop: 100,
         marginTop: 10,
         marginBottom: 10,
         marginStart: 12,
         marginEnd: 12,
         borderRadius: 15,
+        
     }
 })
