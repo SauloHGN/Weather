@@ -68,9 +68,10 @@ const styles = StyleSheet.create
         alignItems: 'center',
         flexDirection: 'column',
         marginTop: 15,
-        paddingBottom: 10,
+        paddingBottom: 5,
         paddingStart: 10,
         paddingEnd: 25,
+        
       
     },
     row: 
@@ -85,7 +86,7 @@ const styles = StyleSheet.create
         alignItems: 'center',
         marginLeft: 15,
         borderRadius: 20,
-        height: 75,
-        width: 75,
+        height: 78,
+        width: 78,
     },
 });

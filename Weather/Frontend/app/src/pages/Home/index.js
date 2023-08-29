@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Header from '../../componentes/Header';
 import Slider from '../../componentes/Slider';
@@ -10,7 +11,7 @@ export default function Home()
     return(
         <View style= {styles.container}>
             <Header temperatura ="17º" clima="Parc. Nublado" maxTemp="20º" minTemp="12º" loc="Londres" sensacao="16º"/>
-            
+          
             <Slider/>
             <WeekTemp/>
             <Circles/>

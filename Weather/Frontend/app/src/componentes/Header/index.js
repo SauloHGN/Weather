@@ -8,11 +8,14 @@ const statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22 :
 export default function Header({temperatura, clima, maxTemp, minTemp, loc, sensacao})
 {
     return(
+           
         <View style= {styles.container}>
             
-            <TouchableOpacity activeOpacity={0.7} style = {styles.buttonMenu}>
+            <View>
+              <TouchableOpacity activeOpacity={0.7} style = {styles.buttonMenu}>
             <FiMenu name="menu" size={27} color="#FFF"/>
             </TouchableOpacity>
+            </View>
        
             <View style = {styles.content}>
 
