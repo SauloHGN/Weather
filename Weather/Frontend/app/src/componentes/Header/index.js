@@ -1,7 +1,7 @@
 import React from 'react';
-import { FiMenu } from 'react-icons/fi';
 import { FaLocationDot } from 'react-icons/fa6';
 import { StyleSheet, View, Text, StatusBar, TouchableOpacity } from 'react-native';
+
 
 const statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22 : 44;
 
@@ -13,7 +13,7 @@ export default function Header({temperatura, clima, maxTemp, minTemp, loc, sensa
             
             <View>
               <TouchableOpacity activeOpacity={0.7} style = {styles.buttonMenu}>
-            <FiMenu name="menu" size={27} color="#FFF"/>
+            <Text name="search" size={27} color="#FFF" />
             </TouchableOpacity>
             </View>
        

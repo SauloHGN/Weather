@@ -44,7 +44,12 @@
       "last 1 safari version"
     ]
   },
+  "resolutions": {
+    "@babel/core": "7.12.*",
+    "@babel/runtime": "7.12.*"
+  },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-react": "^7.22.5"
   }
 }
