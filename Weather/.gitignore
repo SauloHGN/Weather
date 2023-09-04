@@ -33,3 +33,7 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Ignore Objective-C++ source files
+*.cpp
+*.mm
