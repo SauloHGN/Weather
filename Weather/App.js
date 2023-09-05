@@ -6,8 +6,8 @@ import Home from './src/pages/Home'
 export default function App() {
   return (
     <View style= {styles.container}>
-      <Home/>
-      <StatusBar style="auto" />
+      <StatusBar backgroundColor='#46474a' style="light"/>
+      <Home/>  
     </View>
   );
 }

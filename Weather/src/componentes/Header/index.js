@@ -9,8 +9,8 @@ export default function Header({temperatura, clima, maxTemp, minTemp, loc, sensa
     return(           
         <View style= {styles.container}>
             
-            <View style = {styles.buttonMenu}>
-                <TouchableOpacity activeOpacity={0.7}>
+            <View>
+                <TouchableOpacity activeOpacity={0.7}  style = {styles.buttonS}>
                     <Icon name="search" size={27} color="#FFF" />
                 </TouchableOpacity>
             </View>
@@ -45,13 +45,14 @@ const styles = StyleSheet.create
         flexDirection: 'row',
         paddingLeft: 14,
         paddingRight: 14,
-        paddingBottom: 42,
+        paddingBottom: 35,
         
     },
     content:
     {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 20
     },
     temperatura:
     {
@@ -76,8 +77,11 @@ const styles = StyleSheet.create
         color:'#FFF',
         fontSize: 14,
     },
-    buttonMenu:
+    buttonS:
     {
+        position: 'absolute',
         marginTop: -10,
+        marginStart: 3
     }
+
 })

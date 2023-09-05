@@ -157,7 +157,6 @@ const styles = StyleSheet.create
         paddingLeft: 15,
         marginTop: 15,
         marginBottom: 15,
-        alignItems: 'center',
-        
+        alignItems: 'center'
     }
 });

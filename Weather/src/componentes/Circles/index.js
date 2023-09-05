@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text} from 'react-native';
+import Vento from '../../assets/iconsWeather/wind.svg';
+import Lua from '../../assets/iconsWeather/moon.svg';
 
 export default function Circles()
 {
@@ -15,8 +17,13 @@ export default function Circles()
             </View>
 
             <View style={styles.item}>
-            <Text>Icon</Text>
-            <Text>Vento</Text>
+
+                <View style={styles.iconContainer}>
+                     <Vento width={40} height={40}/>        
+                </View>   
+                <Text>Vento</Text>
+
+                
             </View>
 
             <View style={styles.item}>
@@ -49,12 +56,13 @@ export default function Circles()
             </View>
 
             <View style={styles.item}>
-            <Text>Icon</Text>
-            <Text>fase da Lua</Text>
+                <View style={styles.iconContainer}>
+                     <Lua width={80} height={80}/>        
+                </View>   
+                <Text>fase da Lua</Text> 
             </View>
 
          </View>
-
         </View>
     )
 }
@@ -88,4 +96,10 @@ const styles = StyleSheet.create
         height: 82,
         width: 82,
     },
+    iconContainer:
+     {
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute'
+      },
 });
