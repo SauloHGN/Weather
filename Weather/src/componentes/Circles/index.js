@@ -1,7 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text} from 'react-native';
 import Vento from '../../assets/iconsWeather/wind.svg';
+import UV from '../../assets/iconsWeather/uv.svg';
+import Umidade from '../../assets/iconsWeather/gota.svg';
 import Lua from '../../assets/iconsWeather/moon.svg';
+import Pressao from '../../assets/iconsWeather/pressure.svg';
+import Gota from '../../assets/iconsWeather/gota.svg';
+import Visibilidade from '../../assets/iconsWeather/visibility.svg';
 
 export default function Circles()
 {
@@ -12,7 +17,9 @@ export default function Circles()
         <View style= {styles.row}>
 
             <View style={styles.item}>
-            <Text>Icon</Text>
+            <View style={styles.iconContainer}>
+                     <Umidade width={40} height={40}/>        
+                </View> 
             <Text>Umidade</Text>
             </View>
 
@@ -27,12 +34,16 @@ export default function Circles()
             </View>
 
             <View style={styles.item}>
-            <Text>Icon</Text>
+            <View style={styles.iconContainer}>
+                    <Visibilidade width={40} height={40}/>        
+                 </View> 
             <Text>Visibilidade</Text>
             </View>
 
             <View style={styles.item}>
-            <Text>Icon</Text>
+                <View style={styles.iconContainer}>
+                    <Pressao width={40} height={40}/>        
+                 </View> 
             <Text>Pressão</Text>
             </View>
 
@@ -41,7 +52,9 @@ export default function Circles()
         <View style= {styles.row}>
         
             <View style={styles.item}>
-            <Text>Icon</Text>
+                <View style={styles.iconContainer}>
+                    <UV width={50} height={50}/>        
+                 </View> 
             <Text>Raios UV</Text>
             </View>
 
