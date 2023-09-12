@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text} from 'react-native';
+import Gota from '../../assets/iconsWeather/rain-drops.svg';
 
 export default function WeekTemp()
 {
@@ -7,67 +8,59 @@ export default function WeekTemp()
         <View style= {styles.container}>
             
             <View style= {styles.item}>
-            <Text style= {styles.sub}>Ontem</Text>
-            <Text style= {styles.sub}>0%</Text>
-            <Text style= {styles.sub}> icon</Text>
-            <Text style= {styles.sub}> Max Temp</Text>
-            <Text style= {styles.sub}> Min Temp</Text>
+            <Text style= {styles.dia}>Ontem</Text>
+            <Text style= {styles.sub}>0%</Text>    
+            <Text style= {styles.sub}> Max: 25º</Text>
+            <Text style= {styles.sub}> Min: 15º</Text>
             </View>
 
             <View style= {styles.item}>
-            <Text style= {styles.sub}>Hoje</Text>
+            <Text style= {styles.dia}>Hoje</Text>
             <Text style= {styles.sub}>0%</Text>
-            <Text style= {styles.sub}> icon</Text>
-            <Text style= {styles.sub}> Max Temp</Text>
-            <Text style= {styles.sub}> Min Temp</Text>
+            <Text style= {styles.sub}> Max: 25º</Text>
+            <Text style= {styles.sub}> Min: 15º</Text>
             </View>
 
             <View style= {styles.item}>
-            <Text style= {styles.sub}>Quarta-feira</Text>
+            <Text style= {styles.dia}>quarta-feira</Text>
             <Text style= {styles.sub}>0%</Text>
-            <Text style= {styles.sub}> icon</Text>
-            <Text style= {styles.sub}> Max Temp</Text>
-            <Text style= {styles.sub}> Min Temp</Text>
+            <Text style= {styles.sub}> Max: 25º</Text>
+            <Text style= {styles.sub}> Min: 15º</Text>
             </View>
             
             <View style= {styles.item}>
-            <Text style= {styles.sub}>Quinta-feira</Text>
+            <Text style= {styles.dia}>quinta-feira</Text>
             <Text style= {styles.sub}>0%</Text>
-            <Text style= {styles.sub}> icon</Text>
-            <Text style= {styles.sub}> Max Temp</Text>
-            <Text style= {styles.sub}> Min Temp</Text>
+            <Text style= {styles.sub}> Max: 25º</Text>
+            <Text style= {styles.sub}> Min: 15º</Text>
             </View>
 
             <View style= {styles.item}>
-            <Text style= {styles.sub}>Sexta-feira</Text>
+            <Text style= {styles.dia}>sexta-feira</Text>
             <Text style= {styles.sub}>0%</Text>
-            <Text style= {styles.sub}> icon</Text>
-            <Text style= {styles.sub}> Max Temp</Text>
-            <Text style= {styles.sub}> Min Temp</Text>
+            <Text style= {styles.sub}> Max: 25º</Text>
+            <Text style= {styles.sub}> Min: 15º</Text>
             </View>
 
             <View style= {styles.item}>
-            <Text style= {styles.sub}>Sabado</Text>
+            <Text style= {styles.dia}>sabado</Text>
             <Text style= {styles.sub}>0%</Text>
-            <Text style= {styles.sub}> icon</Text>
-            <Text style= {styles.sub}> Max Temp</Text>
-            <Text style= {styles.sub}> Min Temp</Text>
+            <Text style= {styles.sub}> Max: 25º</Text>
+            <Text style= {styles.sub}> Min: 15º</Text>
             </View>
 
             <View style= {styles.item}>
-            <Text style= {styles.sub}>Domingo</Text>
+            <Text style= {styles.dia}>domingo</Text>
             <Text style= {styles.sub}>0%</Text>
-            <Text style= {styles.sub}> icon</Text>
-            <Text style= {styles.sub}> Max Temp</Text>
-            <Text style= {styles.sub}> Min Temp</Text>
+            <Text style= {styles.sub}> Max: 25º</Text>
+            <Text style= {styles.sub}> Min: 15º</Text>
             </View>
 
             <View style= {styles.item}>
-            <Text style= {styles.sub}>Segunda-Feira</Text>
+            <Text style= {styles.dia} >segunda-feira</Text>
             <Text style= {styles.sub}>0%</Text>
-            <Text style= {styles.sub}> icon</Text>
-            <Text style= {styles.sub}> Max Temp</Text>
-            <Text style= {styles.sub}> Min Temp</Text>
+            <Text style= {styles.sub}> Max: 25º</Text>
+            <Text style= {styles.sub}> Min: 15º</Text>
             </View>
 
             
@@ -86,7 +79,7 @@ const styles = StyleSheet.create
         marginTop: 10,
         marginStart: 14,
         marginEnd: 14,
-        paddingTop: 10,
+        paddingTop: 5,
         paddingBottom: 15,
         borderRadius: 15
         
@@ -95,16 +88,26 @@ const styles = StyleSheet.create
     {
         flexDirection: 'row',
         alignItems: 'center', 
-        marginTop: 5,
-        paddingStart: 10,
-        paddingEnd: 10,
+        marginTop: 10,
+        paddingStart: 2,
+        paddingEnd: 2,
+        
     },
-    sub:
+    dia:
     {
         flex:1,
         alignItems:'center',
         paddingStart: 5,
-        paddingEnd: 5
+        paddingEnd: 0,
+        
     },
+    sub:
+    {
+
+        alignItems:'center',
+        paddingStart: 20,
+        paddingEnd: 10,
+    },
+
   
 })

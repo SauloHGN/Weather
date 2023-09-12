@@ -57,7 +57,7 @@ const styles = StyleSheet.create
     temperatura:
     {
         color: '#FFF',
-        fontSize: 58,
+        fontSize: 72,
         fontWeight: '500'       
     },
     clima:

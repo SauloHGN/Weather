@@ -1,12 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Text} from 'react-native';
 import Vento from '../../assets/iconsWeather/wind.svg';
-import UV from '../../assets/iconsWeather/uv.svg';
+import UV from '../../assets/iconsWeather/uv3.svg';
 import Umidade from '../../assets/iconsWeather/gota.svg';
 import Lua from '../../assets/iconsWeather/moon.svg';
 import Pressao from '../../assets/iconsWeather/pressure.svg';
-import Gota from '../../assets/iconsWeather/gota.svg';
-import Visibilidade from '../../assets/iconsWeather/visibility.svg';
+import Visibilidade from '../../assets/iconsWeather/Vector.svg';
 
 export default function Circles()
 {
@@ -34,7 +33,7 @@ export default function Circles()
             </View>
 
             <View style={styles.item}>
-            <View style={styles.iconContainer}>
+                <View style={styles.iconContainer}>
                     <Visibilidade width={40} height={40}/>        
                  </View> 
             <Text>Visibilidade</Text>
@@ -64,13 +63,12 @@ export default function Circles()
             </View>
 
             <View style={styles.item}>
-            <Text>Icon</Text>
             <Text>Pólem</Text>
             </View>
 
             <View style={styles.item}>
                 <View style={styles.iconContainer}>
-                     <Lua width={80} height={80}/>        
+                     <Lua width={40} height={40}/>        
                 </View>   
                 <Text>fase da Lua</Text> 
             </View>
@@ -98,16 +96,16 @@ const styles = StyleSheet.create
     {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 10,
+        marginBottom: 7,
     },
     item:
     {
         backgroundColor: '#46474a',
         alignItems: 'center',
-        marginLeft: 10,
+        marginLeft: 7,
         borderRadius: 20,
-        height: 82,
-        width: 82,
+        height: 85,
+        width: 85,
     },
     iconContainer:
      {
