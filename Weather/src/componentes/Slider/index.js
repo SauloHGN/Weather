@@ -142,7 +142,7 @@ const styles = StyleSheet.create
         paddingEnd: 20,
         paddingBottom: 10,
         paddingTop: 10,
-        marginTop: 10,
+        marginTop: 15,
         marginBottom: 10,
         marginStart: 12,
         marginEnd: 12,

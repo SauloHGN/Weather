@@ -40,12 +40,12 @@ const styles = StyleSheet.create
 ({
     container:
     {
-        backgroundColor: '#46474a',
+        backgroundColor: 'transparent',
         paddingTop: statusBarHeight,
         flexDirection: 'row',
         paddingLeft: 14,
         paddingRight: 14,
-        paddingBottom: 35,
+        paddingBottom: 40,
         
     },
     content:
@@ -57,8 +57,9 @@ const styles = StyleSheet.create
     temperatura:
     {
         color: '#FFF',
-        fontSize: 72,
-        fontWeight: '500'       
+        fontSize: 76,
+        fontWeight: '500',   
+        marginTop: 5    
     },
     clima:
     {
@@ -80,8 +81,8 @@ const styles = StyleSheet.create
     buttonS:
     {
         position: 'absolute',
-        marginTop: -10,
-        marginStart: 3
+        marginTop: 0,
+        marginStart: 5,
     }
 
 })

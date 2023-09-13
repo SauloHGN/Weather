@@ -17,7 +17,7 @@ export default function Circles()
 
             <View style={styles.item}>
             <View style={styles.iconContainer}>
-                     <Umidade width={40} height={40}/>        
+                     <Umidade width={50} height={50}/>        
                 </View> 
             <Text>Umidade</Text>
             </View>
@@ -25,50 +25,45 @@ export default function Circles()
             <View style={styles.item}>
 
                 <View style={styles.iconContainer}>
-                     <Vento width={40} height={40}/>        
+                     <Vento width={50} height={50}/>        
                 </View>   
                 <Text>Vento</Text>
 
                 
             </View>
 
-            <View style={styles.item}>
+        </View>  
+
+        <View style= {styles.row}>
+
+        <View style={styles.item}>
                 <View style={styles.iconContainer}>
-                    <Visibilidade width={40} height={40}/>        
+                    <Visibilidade width={50} height={50}/>        
                  </View> 
             <Text>Visibilidade</Text>
             </View>
 
             <View style={styles.item}>
                 <View style={styles.iconContainer}>
-                    <Pressao width={40} height={40}/>        
+                    <Pressao width={50} height={50}/>        
                  </View> 
             <Text>Pressão</Text>
             </View>
 
-        </View>  
+        </View>
 
         <View style= {styles.row}>
         
             <View style={styles.item}>
                 <View style={styles.iconContainer}>
-                    <UV width={50} height={50}/>        
+                    <UV width={60} height={60}/>        
                  </View> 
             <Text>Raios UV</Text>
             </View>
 
             <View style={styles.item}>
-            <Text>Icon</Text>
-            <Text>Qualidade do Ar</Text>
-            </View>
-
-            <View style={styles.item}>
-            <Text>Pólem</Text>
-            </View>
-
-            <View style={styles.item}>
                 <View style={styles.iconContainer}>
-                     <Lua width={40} height={40}/>        
+                     <Lua width={60} height={60}/>        
                 </View>   
                 <Text>fase da Lua</Text> 
             </View>
@@ -89,28 +84,29 @@ const styles = StyleSheet.create
         marginTop: 20,
         paddingBottom: 5,
         paddingStart: 16,
-        paddingEnd: 25,
+        paddingEnd: 35,
          
     },
     row: 
     {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 7,
+        marginBottom: 10,
     },
     item:
     {
         backgroundColor: '#46474a',
         alignItems: 'center',
-        marginLeft: 7,
+        marginLeft: 20,
         borderRadius: 20,
-        height: 85,
-        width: 85,
+        height: 120,
+        width: 150,
     },
     iconContainer:
      {
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'absolute'
+        marginTop: 5,
+        
       },
 });

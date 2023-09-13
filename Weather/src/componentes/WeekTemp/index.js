@@ -7,6 +7,9 @@ export default function WeekTemp()
     return(
         <View style= {styles.container}>
             
+            <Text style={styles.titulo}>Previsão da Semana</Text>
+            <View style={styles.separator} />
+
             <View style= {styles.item}>
             <Text style= {styles.dia}>Ontem</Text>
             <Text style= {styles.sub}>0%</Text>    
@@ -79,16 +82,16 @@ const styles = StyleSheet.create
         marginTop: 10,
         marginStart: 14,
         marginEnd: 14,
-        paddingTop: 5,
+        paddingTop: 10,
         paddingBottom: 15,
-        borderRadius: 15
+        borderRadius: 15,
         
     },
     item:
     {
         flexDirection: 'row',
         alignItems: 'center', 
-        marginTop: 10,
+        marginTop: 12,
         paddingStart: 2,
         paddingEnd: 2,
         
@@ -108,6 +111,17 @@ const styles = StyleSheet.create
         paddingStart: 20,
         paddingEnd: 10,
     },
+    separator:
+    {
+        borderBottomWidth: 0.5,
+        borderBottomColor: '#ccc',
+        marginBottom: 5, 
+    },
+    titulo:
+    {
+        marginStart: 15,
+        marginBottom: 10
+    }
 
   
 })
