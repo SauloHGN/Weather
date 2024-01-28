@@ -13,14 +13,14 @@ export default function Circles() {
       <View style={styles.row}>
         <View style={styles.item}>
           <View style={styles.iconContainer}>
-            <Umidade width={45} height={45} />
+            <Umidade width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Umidade</Text>
         </View>
 
         <View style={styles.item}>
           <View style={styles.iconContainer}>
-            <Vento width={45} height={45} />
+            <Vento width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Vento</Text>
         </View>
@@ -29,14 +29,14 @@ export default function Circles() {
       <View style={styles.row}>
         <View style={styles.item}>
           <View style={styles.iconContainer}>
-            <Visibilidade width={45} height={45} />
+            <Visibilidade width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Visibilidade</Text>
         </View>
 
         <View style={styles.item}>
           <View style={styles.iconContainer}>
-            <Pressao width={43} height={43} />
+            <Pressao width={38} height={38} />
           </View>
           <Text style={styles.TextCircles}>Pressão</Text>
         </View>
@@ -45,14 +45,14 @@ export default function Circles() {
       <View style={styles.row}>
         <View style={styles.item}>
           <View style={styles.iconContainer}>
-            <UV width={45} height={45} />
+            <UV width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Raios UV</Text>
         </View>
 
         <View style={styles.item}>
           <View style={styles.iconContainer}>
-            <Lua width={45} height={45} />
+            <Lua width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Fase da Lua</Text>
         </View>
