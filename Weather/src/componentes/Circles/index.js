@@ -5,7 +5,7 @@ import UV from "../../assets/iconsWeather/uv3.svg";
 import Umidade from "../../assets/iconsWeather/gota.svg";
 import Lua from "../../assets/iconsWeather/moon.svg";
 import Pressao from "../../assets/iconsWeather/pressure.svg";
-import Visibilidade from "../../assets/iconsWeather/Vector.svg";
+import Visibilidade from "../../assets/iconsWeather/visibility.svg";
 
 export default function Circles() {
   return (
@@ -16,6 +16,7 @@ export default function Circles() {
             <Umidade width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Umidade</Text>
+          <Text style={styles.InfoCircles}>50%</Text>
         </View>
 
         <View style={styles.item}>
@@ -23,6 +24,7 @@ export default function Circles() {
             <Vento width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Vento</Text>
+          <Text style={styles.InfoCircles}>5km/h</Text>
         </View>
       </View>
 
@@ -32,6 +34,7 @@ export default function Circles() {
             <Visibilidade width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Visibilidade</Text>
+          <Text style={styles.InfoCircles}>Boa</Text>
         </View>
 
         <View style={styles.item}>
@@ -39,6 +42,7 @@ export default function Circles() {
             <Pressao width={38} height={38} />
           </View>
           <Text style={styles.TextCircles}>Pressão</Text>
+          <Text style={styles.InfoCircles}>19</Text>
         </View>
       </View>
 
@@ -48,6 +52,7 @@ export default function Circles() {
             <UV width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Raios UV</Text>
+          <Text style={styles.InfoCircles}>Baixo</Text>
         </View>
 
         <View style={styles.item}>
@@ -55,6 +60,7 @@ export default function Circles() {
             <Lua width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Fase da Lua</Text>
+          <Text style={styles.InfoCircles}>Nova</Text>
         </View>
       </View>
     </View>
@@ -78,7 +84,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   item: {
-    backgroundColor: "#46474a",
+    //backgroundColor: "#46474a",
+    backgroundColor: "rgba(52, 52, 52, 0.6)",
     alignItems: "center",
     marginLeft: 20,
     borderRadius: 20,
@@ -93,6 +100,10 @@ const styles = StyleSheet.create({
   TextCircles: {
     paddingTop: 5,
     color: "#FFFFFF",
-    fontWeight: "500",
+  },
+  InfoCircles: {
+    color: "#FFF",
+    fontSize: 13,
+    fontWeight: "600",
   },
 });

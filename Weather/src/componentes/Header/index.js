@@ -23,7 +23,7 @@ export default function Header({
   return (
     <View style={styles.container}>
       <View>
-        <TouchableOpacity activeOpacity={0.7} style={styles.buttonS}>
+        <TouchableOpacity activeOpacity={0.6} style={styles.buttonS}>
           <Icon name="search" size={27} color="#FFF" />
         </TouchableOpacity>
       </View>
@@ -49,7 +49,7 @@ export default function Header({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#46474a",
+    //backgroundColor: "#46474a",
     paddingTop: statusBarHeight,
     flexDirection: "row",
     paddingLeft: 14,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
   buttonS: {
     position: "absolute",
-    marginTop: 0,
+    marginTop: 5,
     marginStart: 5,
   },
 });

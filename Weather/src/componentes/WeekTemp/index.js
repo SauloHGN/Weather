@@ -70,7 +70,8 @@ export default function WeekTemp() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#46474a",
+    //backgroundColor: "#46474a",
+    backgroundColor: "rgba(52, 52, 52, 0.6)",
     flexDirection: "column",
     justifyContent: "center",
     marginTop: 10,
@@ -92,19 +93,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingStart: 5,
     paddingEnd: 0,
+    color: "#FFF",
   },
   sub: {
     alignItems: "center",
     paddingStart: 20,
     paddingEnd: 10,
+    color: "#FFF",
   },
   separator: {
     borderBottomWidth: 0.5,
     borderBottomColor: "#ccc",
     marginBottom: 5,
+    marginEnd: 10,
+    marginStart: 10,
   },
   titulo: {
     marginStart: 15,
     marginBottom: 10,
+    color: "#FFF",
   },
 });
