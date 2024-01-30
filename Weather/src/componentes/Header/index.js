@@ -5,6 +5,8 @@ import {
   Text,
   StatusBar,
   TouchableOpacity,
+  SafeAreaView,
+  TextInput,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -22,11 +24,13 @@ export default function Header({
 }) {
   return (
     <View style={styles.container}>
-      <View>
+      <SafeAreaView>
+        {/* Texto da Pesquisa*/}
+        <TextInput style={styles.SearchBar} placeholder="Pesquisar" />
         <TouchableOpacity activeOpacity={0.6} style={styles.buttonS}>
           <Icon name="search" size={27} color="#FFF" />
         </TouchableOpacity>
-      </View>
+      </SafeAreaView>
 
       <View style={styles.content}>
         <Text style={styles.temperatura}> {temperatura}</Text>
@@ -49,7 +53,6 @@ export default function Header({
 
 const styles = StyleSheet.create({
   container: {
-    //backgroundColor: "#46474a",
     paddingTop: statusBarHeight,
     flexDirection: "row",
     paddingLeft: 14,
@@ -65,7 +68,7 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 76,
     fontWeight: "500",
-    marginTop: 5,
+    marginTop: 30,
   },
   clima: {
     color: "#FFF",
@@ -83,7 +86,20 @@ const styles = StyleSheet.create({
   },
   buttonS: {
     position: "absolute",
-    marginTop: 5,
-    marginStart: 5,
+    marginTop: 3,
+    marginStart: 3,
+    alignItems: "flex-end",
+  },
+  SearchBar: {
+    position: "absolute",
+    backgroundColor: "#FFF",
+    alignItems: "center",
+    justifyContent: "center",
+    marginStart: 35,
+    paddingStart: 10,
+    height: "16%",
+    width: 300,
+    borderRadius: 30,
+    fontSize: 14,
   },
 });

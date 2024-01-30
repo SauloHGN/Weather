@@ -16,7 +16,7 @@ export default function Home() {
         <LinearGradient
           // Background Linear Gradient
           colors={["#7DA17D", "#607D7F", "#4D5657"]}
-          locations={[0.1, 0.35, 0.8]}
+          locations={[0.15, 0.35, 0.85]}
           useAngle={true}
           angle={167}
           angleCenter={{ x: 0.5, y: 0.5 }}
@@ -62,5 +62,5 @@ const styles = StyleSheet.create({
 Dia = colors={["#29B2DD", "#33AADD", "#1A73C0"]} locations={[0.1, 0.6, 1]}
 Noite = colors={["#08244F", "#134CB5", "#0C378B"]} locations={[0.08, 0.45, 0.7]}
 Nublado = colors={["#929FB7", "#647F97", "#646569"]} locations={[0.02, 0.4, 0.85]}
-Chuva = colors={["#7DA17D", "#607D7F", "#4D5657"]} locations={[0.1, 0.35, 0.8]}
+Chuva = colors={["#7DA17D", "#607D7F", "#4D5657"]} locations={[0.15, 0.35, 0.85]}
 */
