@@ -1,5 +1,12 @@
 import React from "react";
-import { ScrollView, StyleSheet, View, Text } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  Text,
+  SafeAreaView,
+  StatusBar,
+} from "react-native";
 import Header from "../../componentes/Header";
 import Slider from "../../componentes/Slider";
 import WeekTemp from "../../componentes/WeekTemp";

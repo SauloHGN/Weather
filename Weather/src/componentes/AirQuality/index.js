@@ -1,17 +1,29 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 
-export default function SunTime() {
+import { LinearGradient } from "expo-linear-gradient";
+
+export default function AirQuality() {
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>Qualidade do Ar</Text>
       <View style={styles.separator} />
 
-      <View style={styles.barra}>
-        <View style={[styles.secao, { borderBottomColor: "red" }]} />
-        <View style={[styles.secao, { borderBottomColor: "yellow" }]} />
-        <View style={[styles.secao, { borderBottomColor: "green" }]} />
-      </View>
+      <LinearGradient
+        colors={[
+          "#7e0023",
+          "#8f3f97",
+          "#ff0000",
+          "#ff7e00",
+          "#ffff00",
+          "#00e400",
+        ]}
+        locations={[0.001, 0.32, 0.48, 0.64, 0.8, 1]}
+        start={{ x: 0, y: 1 }}
+        end={{ x: 1, y: 0 }}
+        style={styles.barra}>
+        <View style={styles.indicador} />
+      </LinearGradient>
     </View>
   );
 }
@@ -39,26 +51,35 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderBottomWidth: 0.5,
     borderBottomColor: "#ccc",
-    marginBottom: 5,
+    marginBottom: 30,
   },
   titulo: {
     marginStart: 15,
     marginBottom: 8,
     color: "#FFF",
   },
+  // barra: {
+  //   flex: 1,
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   borderBottomWidth: 6,
+  //   borderRadius: 30,
+  //   //borderBottomColor: "#ccc",
+  //   marginBottom: 5,
+  //   marginTop: 30,
+  //   marginEnd: 15,
+  //   marginStart: 15,
+  // },
   barra: {
-    flex: 1,
+    flexDirection: "row",
+    height: 5,
+    borderRadius: 10,
+    overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
-    borderBottomWidth: 6,
-    borderRadius: 30,
-    //borderBottomColor: "#ccc",
-    marginBottom: 5,
-    marginTop: 30,
-    marginEnd: 15,
-    marginStart: 15,
   },
-  secao: {
+  indicador: {
     flex: 1,
+    borderRadius: 10,
   },
 });

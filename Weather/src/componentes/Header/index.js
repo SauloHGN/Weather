@@ -8,11 +8,20 @@ import {
   SafeAreaView,
   TextInput,
 } from "react-native";
+// import Animated, {
+//   Easing,
+//   useSharedValues,
+//   useAnimatedStyle,
+//   withTiming,
+// } from "react-native-reanimated";
 import Icon from "react-native-vector-icons/FontAwesome";
 
+//
+
+//
 const statusBarHeight = StatusBar.currentHeight
-  ? StatusBar.currentHeight + 22
-  : 44;
+  ? StatusBar.currentHeight + 20
+  : 40;
 
 export default function Header({
   temperatura,
@@ -23,29 +32,32 @@ export default function Header({
   sensacao,
 }) {
   return (
-    <View style={styles.container}>
-      <SafeAreaView>
-        {/* Texto da Pesquisa*/}
-        <TextInput style={styles.SearchBar} placeholder="Pesquisar" />
+    <View>
+      <View style={styles.searchContainer}>
+        {/* Texto de pesquisa*/}
+        <TextInput style={styles.searchBar} placeholder="Pesquisar" />
+
         <TouchableOpacity activeOpacity={0.6} style={styles.buttonS}>
           <Icon name="search" size={27} color="#FFF" />
         </TouchableOpacity>
-      </SafeAreaView>
+      </View>
 
-      <View style={styles.content}>
-        <Text style={styles.temperatura}> {temperatura}</Text>
-        <Text style={styles.clima}> {clima}</Text>
+      <View style={styles.container}>
+        <View style={styles.content}>
+          <Text style={styles.temperatura}> {temperatura}</Text>
+          <Text style={styles.clima}> {clima}</Text>
 
-        <Text style={styles.localizacao}>
-          {"\n"}
-          {loc}
-          {"  "}
-          <Icon name="map-marker" size={20} color="#FFF" />
-        </Text>
+          <Text style={styles.localizacao}>
+            {"\n"}
+            {loc}
+            {"  "}
+            <Icon name="map-marker" size={20} color="#FFF" />
+          </Text>
 
-        <Text style={styles.infos}>
-          {maxTemp}/{minTemp} Sensação térmica de {sensacao}
-        </Text>
+          <Text style={styles.infos}>
+            {maxTemp}/{minTemp} Sensação térmica de {sensacao}
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -53,14 +65,15 @@ export default function Header({
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: statusBarHeight,
+    flex: 1,
+    justifyContent: "center",
     flexDirection: "row",
     paddingLeft: 14,
     paddingRight: 14,
     paddingBottom: 40,
   },
   content: {
-    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
   },
@@ -84,20 +97,23 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 14,
   },
-  buttonS: {
-    position: "absolute",
-    marginTop: 3,
-    marginStart: 3,
-    alignItems: "flex-end",
+  searchContainer: {
+    paddingTop: statusBarHeight,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    margin: 12,
   },
-  SearchBar: {
-    position: "absolute",
+  buttonS: {
+    marginEnd: 7,
+  },
+  searchBar: {
     backgroundColor: "#FFF",
     alignItems: "center",
     justifyContent: "center",
-    marginStart: 35,
-    paddingStart: 10,
-    height: "16%",
+    marginStart: 20,
+    paddingStart: 12,
+    height: 36,
     width: 300,
     borderRadius: 30,
     fontSize: 14,
