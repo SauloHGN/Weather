@@ -6,11 +6,7 @@ import Home from "./src/pages/Home";
 export default function App() {
   return (
     <View style={styles.container}>
-      <StatusBar
-        /*backgroundColor="#46474a"*/
-        backgroundColor="#0000"
-        style="light"
-      />
+      <StatusBar backgroundColor="#0000" style="light" />
       <Home />
     </View>
   );

@@ -1,27 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
   Text,
   StatusBar,
   TouchableOpacity,
+  Dimensions,
   SafeAreaView,
   TextInput,
 } from "react-native";
-// import Animated, {
-//   Easing,
-//   useSharedValues,
-//   useAnimatedStyle,
-//   withTiming,
-// } from "react-native-reanimated";
+import Animated, {
+  useSharedValue,
+  withSpring,
+  Easing,
+} from "react-native-reanimated";
 import Icon from "react-native-vector-icons/FontAwesome";
-
 //
-
+//
+import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 //
 const statusBarHeight = StatusBar.currentHeight
-  ? StatusBar.currentHeight + 20
-  : 40;
+  ? StatusBar.currentHeight + 10
+  : 35;
+//
 
 export default function Header({
   temperatura,
@@ -31,13 +32,47 @@ export default function Header({
   loc,
   sensacao,
 }) {
+  const [isSearchBarOpen, setSearchBarOpen] = useState(false);
+  const searchBarTranslateX = useSharedValue(vw(100));
+
+  const changeSearchBar = () => {
+    setSearchBarOpen(!isSearchBarOpen);
+
+    if (isSearchBarOpen) {
+      searchBarTranslateX.value = withSpring(isSearchBarOpen ? vw(100) : 0, {
+        damping: 20,
+        stiffness: 150,
+        easing: Easing.inOut(Easing.ease),
+      });
+      return;
+    } else {
+      searchBarTranslateX.value = withSpring(isSearchBarOpen ? 0 : 0, {
+        damping: 20,
+        stiffness: 150,
+        easing: Easing.inOut(Easing.ease),
+      });
+    }
+  };
   return (
     <View>
       <View style={styles.searchContainer}>
-        {/* Texto de pesquisa*/}
-        <TextInput style={styles.searchBar} placeholder="Pesquisar" />
+        <Animated.View
+          style={{
+            transform: [{ translateX: searchBarTranslateX }],
+            opacity: isSearchBarOpen ? 1 : 1,
+          }}>
+          {/* Texto de pesquisa*/}
+          <TextInput
+            editable={isSearchBarOpen ? true : false}
+            style={[styles.searchBar]}
+            placeholder="Pesquisar"
+          />
+        </Animated.View>
 
-        <TouchableOpacity activeOpacity={0.6} style={styles.buttonS}>
+        <TouchableOpacity
+          onPress={changeSearchBar}
+          activeOpacity={0.6}
+          style={styles.buttonS}>
           <Icon name="search" size={27} color="#FFF" />
         </TouchableOpacity>
       </View>
@@ -75,13 +110,13 @@ const styles = StyleSheet.create({
   content: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 20,
+    marginTop: 70,
   },
   temperatura: {
     color: "#FFF",
     fontSize: 76,
     fontWeight: "500",
-    marginTop: 30,
+    marginTop: 10,
   },
   clima: {
     color: "#FFF",
@@ -105,16 +140,17 @@ const styles = StyleSheet.create({
     margin: 12,
   },
   buttonS: {
-    marginEnd: 7,
+    marginStart: 10,
   },
   searchBar: {
     backgroundColor: "#FFF",
     alignItems: "center",
     justifyContent: "center",
-    marginStart: 20,
-    paddingStart: 12,
+    marginStart: 15,
+    left: 0,
+    paddingStart: 16,
     height: 36,
-    width: 300,
+    width: vw(80),
     borderRadius: 30,
     fontSize: 14,
   },
