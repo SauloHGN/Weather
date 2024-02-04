@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
-
 import { LinearGradient } from "expo-linear-gradient";
+//
+import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
+//
+export default function AirQuality({ airQuality, airQualityNivel }) {
+  const [indicadorPos, setIndicadorPos] = useState(0);
 
-export default function AirQuality() {
+  useEffect(() => {
+    const maxValue = 500;
+    const totalWidht = vw(89);
+
+    const newPos = (airQuality / maxValue) * totalWidht;
+
+    setIndicadorPos(newPos);
+  }, [airQuality]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>Qualidade do Ar</Text>
       <View style={styles.separator} />
+
+      <View style={styles.containerText}>
+        <Text style={styles.airQualityNumber}>{airQuality}</Text>
+        <Text></Text>
+        <Text style={styles.airQualityNivel}>{airQualityNivel}</Text>
+      </View>
 
       <LinearGradient
         colors={[
@@ -22,22 +40,20 @@ export default function AirQuality() {
         start={{ x: 0, y: 1 }}
         end={{ x: 1, y: 0 }}
         style={styles.barra}>
-        <View style={styles.indicador} />
+        <View style={[styles.indicador, { right: indicadorPos }]}></View>
       </LinearGradient>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //backgroundColor: '#46474a',
     backgroundColor: "rgba(52, 52, 52, 0.6)",
     flexDirection: "column",
     justifyContent: "center",
     paddingStart: 10,
     paddingEnd: 10,
-    paddingBottom: 30,
+    paddingBottom: 25,
     paddingTop: 10,
     marginTop: 5,
     marginBottom: 10,
@@ -45,41 +61,53 @@ const styles = StyleSheet.create({
     marginEnd: 12,
     borderRadius: 15,
   },
+  titulo: {
+    marginStart: 10,
+    marginBottom: 8,
+    color: "#FFF",
+  },
   separator: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     borderBottomWidth: 0.5,
     borderBottomColor: "#ccc",
-    marginBottom: 30,
+    marginBottom: 5,
   },
-  titulo: {
-    marginStart: 15,
-    marginBottom: 8,
+  containerText: {
+    flexDirection: "row",
+  },
+  airQualityNumber: {
+    fontSize: 35,
+    fontWeight: "500",
+    marginStart: 10,
     color: "#FFF",
   },
-  // barra: {
-  //   flex: 1,
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  //   borderBottomWidth: 6,
-  //   borderRadius: 30,
-  //   //borderBottomColor: "#ccc",
-  //   marginBottom: 5,
-  //   marginTop: 30,
-  //   marginEnd: 15,
-  //   marginStart: 15,
-  // },
+  airQualityNivel: {
+    fontSize: 18,
+    fontWeight: "500",
+    color: "#FFF",
+    marginTop: 16,
+    marginStart: 40,
+  },
   barra: {
     flexDirection: "row",
-    height: 5,
+    marginTop: 5,
+    height: 6,
     borderRadius: 10,
-    overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
+    width: vw(89),
+    marginTop: 5,
   },
   indicador: {
-    flex: 1,
+    position: "absolute",
     borderRadius: 10,
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "black",
+    top: -4,
+    width: 7,
+    height: 14,
   },
 });

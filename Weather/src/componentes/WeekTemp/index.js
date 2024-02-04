@@ -1,5 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
+import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
+//
 import Gota from "../../assets/iconsWeather/rain-drops.svg";
 
 export default function WeekTemp() {
@@ -70,15 +72,14 @@ export default function WeekTemp() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //backgroundColor: "#46474a",
     backgroundColor: "rgba(52, 52, 52, 0.6)",
     flexDirection: "column",
     justifyContent: "center",
     marginTop: 10,
-    marginStart: 14,
-    marginEnd: 14,
+    marginStart: vw(3),
+    marginEnd: vw(3),
     paddingTop: 10,
-    paddingBottom: 15,
+    paddingBottom: 16,
     borderRadius: 15,
   },
   item: {
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
   sub: {
     alignItems: "center",
     paddingStart: 20,
-    paddingEnd: 10,
+    paddingEnd: 12,
     color: "#FFF",
   },
   separator: {

@@ -42,7 +42,7 @@ export default function Home() {
           <Slider />
           <WeekTemp />
           <Circles />
-          <AirQuality />
+          <AirQuality airQuality="50" airQualityNivel="Good" />
           <SunTime />
           <Text></Text>
         </LinearGradient>
