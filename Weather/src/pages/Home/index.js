@@ -1,22 +1,22 @@
-import React from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  View,
-  Text,
-  SafeAreaView,
-  StatusBar,
-} from "react-native";
+import { useRef, useState } from "react";
+import { ScrollView, StyleSheet, View, Text, StatusBar } from "react-native";
+//
 import Header from "../../componentes/Header";
 import Slider from "../../componentes/Slider";
 import WeekTemp from "../../componentes/WeekTemp";
 import Circles from "../../componentes/Circles";
 import SunTime from "../../componentes/SunTime";
 import AirQuality from "../../componentes/AirQuality";
-
+//
 import { LinearGradient } from "expo-linear-gradient";
+//
+import { useOrientation } from "../../scripts/useOrientation";
+//
 
 export default function Home() {
+  //const orientation = useOrientation();
+
+  //
   return (
     <ScrollView contentContainerStyle={styles.scroll}>
       <View style={styles.container}>
@@ -32,7 +32,7 @@ export default function Home() {
           style={{ flex: 1 }}>
           <Header
             temperatura="17º"
-            clima="Parc. Nublado"
+            clima="Chuva"
             maxTemp="20º"
             minTemp="12º"
             loc="Londres"
@@ -44,7 +44,7 @@ export default function Home() {
           <Circles />
           <AirQuality airQuality="50" airQualityNivel="Good" />
           <SunTime />
-          <Text></Text>
+          <Text>FOOTER</Text>
         </LinearGradient>
       </View>
     </ScrollView>

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Dimensions,
   SafeAreaView,
+  Image,
   TextInput,
 } from "react-native";
 import Animated, {
@@ -14,16 +15,18 @@ import Animated, {
   withSpring,
   Easing,
 } from "react-native-reanimated";
+//
 import Icon from "react-native-vector-icons/FontAwesome";
 //
+
 //
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 //
-const statusBarHeight = StatusBar.currentHeight
+export const statusBarHeight = StatusBar.currentHeight
   ? StatusBar.currentHeight + 10
   : 35;
 //
-
+let weatherIcon;
 export default function Header({
   temperatura,
   clima,
@@ -52,6 +55,24 @@ export default function Header({
         easing: Easing.inOut(Easing.ease),
       });
     }
+
+    //
+
+    switch (clima.toLowerCase()) {
+      case "clear":
+        weatherIcon = require("../../assets/iconsWeather/uv2.svg");
+        break;
+      case "parc. nublado":
+        weatherIcon = require("../../assets/iconsWeather/cloudy.svg");
+        break;
+      case "chuva":
+        weatherIcon = require("../../assets/iconsWeather/cloudyRain.svg");
+        break;
+      default:
+        weatherIcon = require("../../assets/iconsWeather/cloudyRainThunder.svg");
+        break;
+    }
+    //
   };
   return (
     <View>
@@ -110,13 +131,13 @@ const styles = StyleSheet.create({
   content: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 70,
+    marginTop: 30,
   },
   temperatura: {
     color: "#FFF",
     fontSize: 76,
     fontWeight: "500",
-    marginTop: 10,
+    marginTop: 5,
   },
   clima: {
     color: "#FFF",
