@@ -24,6 +24,7 @@ export default function Slider() {
         horizontal
         {...panResponder.panHandlers}
         scrollEnabled={scrollEnabled}
+        showsHorizontalScrollIndicator={false}
         style={styles.scrollView}>
         <View style={styles.item}>
           <Text style={styles.text}>10:00</Text>

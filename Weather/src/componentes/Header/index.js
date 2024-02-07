@@ -26,7 +26,7 @@ export const statusBarHeight = StatusBar.currentHeight
   ? StatusBar.currentHeight + 10
   : 35;
 //
-let weatherIcon;
+
 export default function Header({
   temperatura,
   clima,
@@ -35,6 +35,7 @@ export default function Header({
   loc,
   sensacao,
 }) {
+  //Animação SearchBar
   const [isSearchBarOpen, setSearchBarOpen] = useState(false);
   const searchBarTranslateX = useSharedValue(vw(100));
 
@@ -55,12 +56,14 @@ export default function Header({
         easing: Easing.inOut(Easing.ease),
       });
     }
-
     //
+
+    // Icones Personalizados
+    let weatherIcon;
 
     switch (clima.toLowerCase()) {
       case "clear":
-        weatherIcon = require("../../assets/iconsWeather/uv2.svg");
+        weatherIcon = require("../../assets/iconsWeather/cloudSunny.svg");
         break;
       case "parc. nublado":
         weatherIcon = require("../../assets/iconsWeather/cloudy.svg");
@@ -72,6 +75,7 @@ export default function Header({
         weatherIcon = require("../../assets/iconsWeather/cloudyRainThunder.svg");
         break;
     }
+
     //
   };
   return (
@@ -100,6 +104,7 @@ export default function Header({
 
       <View style={styles.container}>
         <View style={styles.content}>
+          <Image source={weatherIcon} height={50} width={50} />
           <Text style={styles.temperatura}> {temperatura}</Text>
           <Text style={styles.clima}> {clima}</Text>
 
@@ -174,5 +179,12 @@ const styles = StyleSheet.create({
     width: vw(80),
     borderRadius: 30,
     fontSize: 14,
+  },
+  header: {
+    height: 80 + statusBarHeight,
+    paddingTop: statusBarHeight,
+    backgroundColor: "blue",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

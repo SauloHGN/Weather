@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
-import { ScrollView, StyleSheet, View, Text, StatusBar } from "react-native";
+import { ScrollView, StyleSheet, View, Text, SafeAreaView } from "react-native";
 //
-import Header from "../../componentes/Header";
+import Header, { statusBarHeight } from "../../componentes/Header";
 import Slider from "../../componentes/Slider";
 import WeekTemp from "../../componentes/WeekTemp";
 import Circles from "../../componentes/Circles";
@@ -18,36 +18,39 @@ export default function Home() {
 
   //
   return (
-    <ScrollView contentContainerStyle={styles.scroll}>
-      <View style={styles.container}>
-        <LinearGradient
-          // Background Linear Gradient
-          colors={["#7DA17D", "#607D7F", "#4D5657"]}
-          locations={[0.15, 0.35, 0.85]}
-          useAngle={true}
-          angle={167}
-          angleCenter={{ x: 0.5, y: 0.5 }}
-          start={{ x: 1, y: 0 }}
-          end={{ x: 0, y: 1 }}
-          style={{ flex: 1 }}>
-          <Header
-            temperatura="17º"
-            clima="Chuva"
-            maxTemp="20º"
-            minTemp="12º"
-            loc="Londres"
-            sensacao="16º"
-          />
-
-          <Slider />
-          <WeekTemp />
-          <Circles />
-          <AirQuality airQuality="50" airQualityNivel="Good" />
-          <SunTime />
-          <Text>FOOTER</Text>
-        </LinearGradient>
-      </View>
-    </ScrollView>
+    <View>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scroll}>
+        <View style={styles.container}>
+          <LinearGradient
+            // Background Linear Gradient
+            colors={["#7DA17D", "#607D7F", "#4D5657"]}
+            locations={[0.15, 0.35, 0.85]}
+            useAngle={true}
+            angle={167}
+            angleCenter={{ x: 0.5, y: 0.5 }}
+            start={{ x: 1, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            style={{ flex: 1 }}>
+            <Header
+              temperatura="17º"
+              clima="Chuva"
+              maxTemp="20º"
+              minTemp="12º"
+              loc="Londres"
+              sensacao="16º"
+            />
+            <Slider />
+            <WeekTemp />
+            <Circles />
+            <AirQuality airQuality="50" airQualityNivel="Good" />
+            <SunTime />
+            <Text>FOOTER</Text>
+          </LinearGradient>
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -62,6 +65,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flex: "1",
+    paddingTop: statusBarHeight,
   },
 });
 
