@@ -4,8 +4,8 @@ import Vento from "../../assets/iconsWeather/wind.svg";
 import UV from "../../assets/iconsWeather/uv3.svg";
 import Umidade from "../../assets/iconsWeather/gota.svg";
 import Lua from "../../assets/iconsWeather/moon.svg";
-import Pressao from "../../assets/iconsWeather/pressure.svg";
 import Visibilidade from "../../assets/iconsWeather/visibility.svg";
+import Pressao from "../../assets/iconsWeather/pressure.svg";
 
 export default function Circles() {
   return (
@@ -39,7 +39,8 @@ export default function Circles() {
 
         <View style={styles.item}>
           <View style={styles.iconContainer}>
-            <Pressao width={38} height={38} />
+            {/* <Pressao width={38} height={38} /> */}
+            <Pressao width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Pressão</Text>
           <Text style={styles.InfoCircles}>19</Text>
@@ -84,8 +85,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   item: {
-    //backgroundColor: "#46474a",
-    backgroundColor: "rgba(52, 52, 52, 0.6)",
+    backgroundColor: "rgba(52, 52, 52, 0.5)",
     alignItems: "center",
     marginLeft: 20,
     borderRadius: 20,

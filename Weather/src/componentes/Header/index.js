@@ -17,7 +17,17 @@ import Animated, {
 } from "react-native-reanimated";
 //
 import Icon from "react-native-vector-icons/FontAwesome";
-//
+import Loc from "../../assets/iconsWeather/location.svg";
+import WeatherIcon from "../../assets/iconsWeather/Snowy.svg";
+// Dia Parcialmente Nublado = "../../assets/iconsWeather/sunnyCloud.svg";
+// Noite Parcialmente Nublada = "../../assets/iconsWeather/cloudyMoon.svg";
+// Chuva Dia = "../../assets/iconsWeather/cloudySunRain.svg";
+// Nuvem + Trovão = "../../assets/iconsWeather/cloudyThunder.svg";
+// Chuva + Trovão = "../../assets/iconsWeather/heavyRain1.svg";
+// Dia Limpo = "../../assets/iconsWeather/clearSun.svg";
+// Noite Limpa = "../../assets/iconsWeather/nightClear1.svg";
+// Nublado = "../../assets/iconsWeather/Cloudy1.svg";
+// Nevando = "../../assets/iconsWeather/Snowy.svg";
 
 //
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
@@ -59,23 +69,13 @@ export default function Header({
     //
 
     // Icones Personalizados
-    let weatherIcon;
 
-    switch (clima.toLowerCase()) {
-      case "clear":
-        weatherIcon = require("../../assets/iconsWeather/cloudSunny.svg");
-        break;
-      case "parc. nublado":
-        weatherIcon = require("../../assets/iconsWeather/cloudy.svg");
-        break;
-      case "chuva":
-        weatherIcon = require("../../assets/iconsWeather/cloudyRain.svg");
-        break;
-      default:
-        weatherIcon = require("../../assets/iconsWeather/cloudyRainThunder.svg");
-        break;
-    }
-
+    const getWeatherTitle = (clima) => {
+      switch (clima) {
+        case "ensolarado":
+          return require("../../assets/iconsWeather/sunny.svg");
+      }
+    };
     //
   };
   return (
@@ -104,15 +104,19 @@ export default function Header({
 
       <View style={styles.container}>
         <View style={styles.content}>
-          <Image source={weatherIcon} height={50} width={50} />
-          <Text style={styles.temperatura}> {temperatura}</Text>
-          <Text style={styles.clima}> {clima}</Text>
+          <WeatherIcon width={120} height={120} />
+          <Text style={styles.temperatura}>
+            {"  "}
+            {temperatura}
+            {"º"}
+          </Text>
+
+          <Text style={styles.clima}>{clima}</Text>
 
           <Text style={styles.localizacao}>
-            {"\n"}
             {loc}
             {"  "}
-            <Icon name="map-marker" size={20} color="#FFF" />
+            <Loc width={16} height={16} color="#FFF" />
           </Text>
 
           <Text style={styles.infos}>
@@ -134,25 +138,33 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   content: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 30,
+    marginTop: 20,
   },
   temperatura: {
+    flex: 1,
     color: "#FFF",
     fontSize: 76,
     fontWeight: "500",
     marginTop: 5,
+    justifyContent: "center",
   },
   clima: {
+    flex: 1,
+    alignContent: "center",
+    textAlign: "center",
     color: "#FFF",
     fontSize: 18,
   },
   localizacao: {
-    textAlign: "left",
+    flexDirection: "row",
+    textAlign: "center",
     color: "#FFF",
     fontSize: 16,
-    justifyContent: "space-between",
+    justifyContent: "center",
+    marginTop: 20,
   },
   infos: {
     color: "#FFF",

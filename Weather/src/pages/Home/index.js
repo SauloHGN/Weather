@@ -7,10 +7,12 @@ import WeekTemp from "../../componentes/WeekTemp";
 import Circles from "../../componentes/Circles";
 import SunTime from "../../componentes/SunTime";
 import AirQuality from "../../componentes/AirQuality";
+import Footer from "../../componentes/Footer";
 //
 import { LinearGradient } from "expo-linear-gradient";
 //
 import { useOrientation } from "../../scripts/useOrientation";
+
 //
 
 export default function Home() {
@@ -34,7 +36,7 @@ export default function Home() {
             end={{ x: 0, y: 1 }}
             style={{ flex: 1 }}>
             <Header
-              temperatura="17º"
+              temperatura="17"
               clima="Chuva"
               maxTemp="20º"
               minTemp="12º"
@@ -46,7 +48,7 @@ export default function Home() {
             <Circles />
             <AirQuality airQuality="50" airQualityNivel="Good" />
             <SunTime />
-            <Text>FOOTER</Text>
+            <Footer />
           </LinearGradient>
         </View>
       </ScrollView>

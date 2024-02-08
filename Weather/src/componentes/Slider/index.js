@@ -131,7 +131,7 @@ export default function Slider() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgba(52, 52, 52, 0.6)",
+    backgroundColor: "rgba(52, 52, 52, 0.5)",
     flexDirection: "row",
     paddingStart: 10,
     paddingEnd: 20,

@@ -2,20 +2,31 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 //
-
-import Nascer from "../../assets/iconsWeather/sunrise.svg";
-import Por from "../../assets/iconsWeather/sunset.svg";
+import Nascer from "../../assets/iconsWeather/sunrise1.svg";
+import Por from "../../assets/iconsWeather/sunset1.svg";
 
 export default function SunTime() {
   return (
     <View style={styles.container}>
       <View style={styles.item}>
-        <Nascer />
+        {/* <Nascer /> */}
+        <View style={styles.subItem}>
+          <View style={styles.circle}>
+            <Nascer />
+          </View>
+          <Text style={styles.titulo}>Nascer do Sol</Text>
+        </View>
         <Text style={styles.textTime}>6:00</Text>
       </View>
 
       <View style={styles.item}>
-        <Por />
+        {/* <Por /> */}
+        <View style={styles.subItem}>
+          <View style={styles.circle}>
+            <Por />
+          </View>
+          <Text style={styles.titulo}>Por do Sol</Text>
+        </View>
         <Text style={styles.textTime}>17:48</Text>
       </View>
     </View>
@@ -24,26 +35,45 @@ export default function SunTime() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    //backgroundColor: '#46474a',
-    backgroundColor: "rgba(52, 52, 52, 0.6)",
     flexDirection: "row",
-    paddingBottom: 15,
-    paddingTop: 5,
     marginTop: 5,
-    marginBottom: 15,
-    marginStart: 12,
-    marginEnd: 12,
-    borderRadius: 15,
   },
   item: {
     flex: 1,
-    alignItems: "center",
+    backgroundColor: "rgba(52, 52, 52, 0.5)",
+    paddingTop: 10,
+    marginStart: vw(3),
+    marginEnd: 12,
+    paddingBottom: 15,
+    borderRadius: 12,
+    alignContent: "center",
+  },
+  subItem: {
+    flex: 1,
+    flexDirection: "row",
+    alignContent: "center",
+    marginStart: 10,
+  },
+  titulo: {
+    color: "#FFF",
+    marginStart: 15,
+    fontSize: 14,
+    marginTop: 2,
+  },
+  circle: {
+    width: vw(7),
+    height: vw(7),
+    borderRadius: 50,
+    backgroundColor: "rgba(52, 52, 52, 0.9)",
     justifyContent: "center",
+    alignItems: "center",
   },
   textTime: {
+    alignItems: "center",
+    textAlign: "center",
     color: "#FFF",
-    fontWeight: "500",
-    fontSize: 14,
+    fontWeight: "600",
+    fontSize: 22,
+    marginTop: 10,
   },
 });

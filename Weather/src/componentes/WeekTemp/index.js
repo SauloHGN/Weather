@@ -72,7 +72,7 @@ export default function WeekTemp() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgba(52, 52, 52, 0.6)",
+    backgroundColor: "rgba(52, 52, 52, 0.5)",
     flexDirection: "column",
     justifyContent: "center",
     marginTop: 10,
