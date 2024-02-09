@@ -18,16 +18,56 @@ import Animated, {
 //
 import Icon from "react-native-vector-icons/FontAwesome";
 import Loc from "../../assets/iconsWeather/location.svg";
-import WeatherIcon from "../../assets/iconsWeather/Snowy.svg";
+//
 // Dia Parcialmente Nublado = "../../assets/iconsWeather/sunnyCloud.svg";
 // Noite Parcialmente Nublada = "../../assets/iconsWeather/cloudyMoon.svg";
 // Chuva Dia = "../../assets/iconsWeather/cloudySunRain.svg";
+// Nuvem + Chuva = "../../assets/iconsWeather/cloudyRain1.svg";
 // Nuvem + Trovão = "../../assets/iconsWeather/cloudyThunder.svg";
 // Chuva + Trovão = "../../assets/iconsWeather/heavyRain1.svg";
 // Dia Limpo = "../../assets/iconsWeather/clearSun.svg";
 // Noite Limpa = "../../assets/iconsWeather/nightClear1.svg";
 // Nublado = "../../assets/iconsWeather/Cloudy1.svg";
 // Nevando = "../../assets/iconsWeather/Snowy.svg";
+
+const getWeatherIcon = (clima, time) => {
+  let iconSource;
+  console.log("Passou!");
+  console.log("", clima);
+  console.log("", time);
+  switch (true) {
+    case clima == "ensolarado":
+      iconSource = "../../assets/iconsWeather/clearSun.svg";
+      break;
+    case "nublado":
+      iconSource = "../../assets/iconsWeather/Cloudy1.svg";
+      break;
+    case clima == "chuvoso":
+      iconSource = "../../assets/iconsWeather/cloudyRain1.svg";
+      console.log("", iconSource);
+      break;
+    case "tempestade":
+      iconSource = "../../assets/iconsWeather/heavyRain1.svg";
+      break;
+    case "Neve":
+      iconSource = "../../assets/iconsWeather/Snowy.svg";
+      break;
+    case clima == "trovoada":
+      iconSource = "../../assets/iconsWeather/cloudyThunder.svg";
+      break;
+    case clima == "parcialmente nublado" && time == "dia":
+      iconSource = "../../assets/iconsWeather/sunnyCloud.svg";
+      break;
+    case clima == "parcialmente nublado" && time == "noite":
+      iconSource = "../../assets/iconsWeather/cloudyMoon.svg";
+      break;
+    default:
+      iconSource = "../../assets/iconsWeather/cloudyMoon.svg";
+      break;
+  }
+  console.log("", iconSource);
+  return iconSource;
+};
 
 //
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
@@ -44,10 +84,12 @@ export default function Header({
   minTemp,
   loc,
   sensacao,
+  time,
 }) {
   //Animação SearchBar
   const [isSearchBarOpen, setSearchBarOpen] = useState(false);
   const searchBarTranslateX = useSharedValue(vw(100));
+  //
 
   const changeSearchBar = () => {
     setSearchBarOpen(!isSearchBarOpen);
@@ -57,6 +99,7 @@ export default function Header({
         damping: 20,
         stiffness: 150,
         easing: Easing.inOut(Easing.ease),
+        getWeatherIcon,
       });
       return;
     } else {
@@ -66,16 +109,10 @@ export default function Header({
         easing: Easing.inOut(Easing.ease),
       });
     }
-    //
-
+    //------------------------------------//
     // Icones Personalizados
+    const weatherIcon = getWeatherIcon(clima, time);
 
-    const getWeatherTitle = (clima) => {
-      switch (clima) {
-        case "ensolarado":
-          return require("../../assets/iconsWeather/sunny.svg");
-      }
-    };
     //
   };
   return (
@@ -104,7 +141,10 @@ export default function Header({
 
       <View style={styles.container}>
         <View style={styles.content}>
-          <WeatherIcon width={120} height={120} />
+          <Image
+            source={getWeatherIcon(clima, time)}
+            style={{ width: 100, height: 100 }}
+          />
           <Text style={styles.temperatura}>
             {"  "}
             {temperatura}
@@ -135,13 +175,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingLeft: 14,
     paddingRight: 14,
-    paddingBottom: 40,
+    paddingBottom: 20,
   },
   content: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 20,
+    marginTop: 50,
   },
   temperatura: {
     flex: 1,
