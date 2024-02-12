@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, ScrollView, PanResponder } from "react-native";
+import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
 export default function Slider() {
   const [scrollEnabled, setScrollEnabled] = useState(true);
@@ -131,26 +132,28 @@ export default function Slider() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgba(52, 52, 52, 0.5)",
+    backgroundColor: "transparent",
     flexDirection: "row",
-    paddingStart: 10,
-    paddingEnd: 20,
-    paddingBottom: 10,
-    paddingTop: 10,
+    paddingBottom: 15,
+    paddingTop: 15,
     marginTop: 15,
-    marginBottom: 10,
+    marginBottom: 5,
     marginStart: 12,
     marginEnd: 12,
-    borderRadius: 15,
   },
   scrollView: {
     width: "100%",
   },
   item: {
-    paddingLeft: 15,
-    marginTop: 15,
-    marginBottom: 15,
+    flex: 1,
+    backgroundColor: "rgba(52, 52, 52, 0.5)",
+    padding: 12,
+    marginTop: 10,
+    marginBottom: 5,
     alignItems: "center",
+    marginEnd: 8,
+    borderRadius: 15,
+    width: vw(20),
   },
   text: {
     color: "#FFF",

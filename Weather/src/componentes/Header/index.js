@@ -5,7 +5,6 @@ import {
   Text,
   StatusBar,
   TouchableOpacity,
-  Dimensions,
   SafeAreaView,
   Image,
   TextInput,
@@ -30,39 +29,38 @@ import Loc from "../../assets/iconsWeather/location.svg";
 // Nublado = "../../assets/iconsWeather/Cloudy1.svg";
 // Nevando = "../../assets/iconsWeather/Snowy.svg";
 
-const getWeatherIcon = (clima, time) => {
+var getWeatherIcon = (clima, time) => {
   let iconSource;
   console.log("Passou!");
   console.log("", clima);
   console.log("", time);
   switch (true) {
     case clima == "ensolarado":
-      iconSource = "../../assets/iconsWeather/clearSun.svg";
+      iconSource = require("../../assets/iconsWeather/clearSun.svg");
       break;
     case "nublado":
-      iconSource = "../../assets/iconsWeather/Cloudy1.svg";
+      iconSource = require("../../assets/iconsWeather/Cloudy1.svg");
       break;
     case clima == "chuvoso":
-      iconSource = "../../assets/iconsWeather/cloudyRain1.svg";
-      console.log("", iconSource);
+      iconSource = require("../../assets/iconsWeather/cloudyRain1.svg");
       break;
     case "tempestade":
-      iconSource = "../../assets/iconsWeather/heavyRain1.svg";
+      iconSource = require("../../assets/iconsWeather/heavyRain1.svg");
       break;
-    case "Neve":
-      iconSource = "../../assets/iconsWeather/Snowy.svg";
+    case "neve":
+      iconSource = require("../../assets/iconsWeather/Snowy.svg");
       break;
     case clima == "trovoada":
-      iconSource = "../../assets/iconsWeather/cloudyThunder.svg";
+      iconSource = require("../../assets/iconsWeather/cloudyThunder.svg");
       break;
     case clima == "parcialmente nublado" && time == "dia":
-      iconSource = "../../assets/iconsWeather/sunnyCloud.svg";
+      iconSource = require("../../assets/iconsWeather/sunnyCloud.svg");
       break;
     case clima == "parcialmente nublado" && time == "noite":
-      iconSource = "../../assets/iconsWeather/cloudyMoon.svg";
+      iconSource = require("../../assets/iconsWeather/cloudyMoon.svg");
       break;
     default:
-      iconSource = "../../assets/iconsWeather/cloudyMoon.svg";
+      iconSource = require("../../assets/iconsWeather/cloudyMoon.svg");
       break;
   }
   console.log("", iconSource);
@@ -99,7 +97,7 @@ export default function Header({
         damping: 20,
         stiffness: 150,
         easing: Easing.inOut(Easing.ease),
-        getWeatherIcon,
+        weatherIcon,
       });
       return;
     } else {
@@ -111,7 +109,7 @@ export default function Header({
     }
     //------------------------------------//
     // Icones Personalizados
-    const weatherIcon = getWeatherIcon(clima, time);
+    var weatherIcon = getWeatherIcon(clima, time);
 
     //
   };

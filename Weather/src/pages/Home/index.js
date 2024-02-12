@@ -13,11 +13,10 @@ import { LinearGradient } from "expo-linear-gradient";
 //
 import { useOrientation } from "../../scripts/useOrientation";
 
-//
-
 export default function Home() {
   //const orientation = useOrientation();
   //
+
   return (
     <LinearGradient
       // Background Linear Gradient
@@ -33,7 +32,7 @@ export default function Home() {
         <ScrollView>
           <Header
             temperatura="17"
-            clima="chuvoso"
+            clima="ensolarado"
             maxTemp="20º"
             minTemp="12º"
             loc="Londres"
