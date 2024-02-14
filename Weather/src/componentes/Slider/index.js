@@ -1,6 +1,26 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ScrollView, PanResponder } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  PanResponder,
+  Image,
+} from "react-native";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
+//
+import Teste from "../../assets/iconsWeather/sunnyCloud.svg";
+const Icon = {};
+// Dia Parcialmente Nublado = "../../assets/iconsWeather/sunnyCloud.svg";
+// Noite Parcialmente Nublada = "../../assets/iconsWeather/cloudyMoon.svg";
+// Chuva Dia = "../../assets/iconsWeather/cloudySunRain.svg";
+// Nuvem + Chuva = "../../assets/iconsWeather/cloudyRain1.svg";
+// Nuvem + Trovão = "../../assets/iconsWeather/cloudyThunder.svg";
+// Chuva + Trovão = "../../assets/iconsWeather/heavyRain1.svg";
+// Dia Limpo = "../../assets/iconsWeather/clearSun.svg";
+// Noite Limpa = "../../assets/iconsWeather/nightClear1.svg";
+// Nublado = "../../assets/iconsWeather/Cloudy1.svg";
+// Nevando = "../../assets/iconsWeather/Snowy.svg";
 
 export default function Slider() {
   const [scrollEnabled, setScrollEnabled] = useState(true);
@@ -29,98 +49,126 @@ export default function Slider() {
         style={styles.scrollView}>
         <View style={styles.item}>
           <Text style={styles.text}>10:00</Text>
-          <Text>Icon</Text>
+          {/*  */}
+          <Teste width={25} height={25} style={styles.icone} />
+          {/*  */}
           <Text style={styles.text}>13º</Text>
           <Text style={styles.text}>0%</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.text}>11:00</Text>
-          <Text>Icon</Text>
+          {/*  */}
+          <Teste width={25} height={25} style={styles.icone} />
+          {/*  */}
           <Text style={styles.text}>13º</Text>
           <Text style={styles.text}>2%</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.text}>12:00</Text>
-          <Text>Icon</Text>
+          {/*  */}
+          <Teste width={25} height={25} style={styles.icone} />
+          {/*  */}
           <Text style={styles.text}>14º</Text>
           <Text style={styles.text}>2%</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.text}>13:00</Text>
-          <Text>Icon</Text>
+          {/*  */}
+          <Teste width={25} height={25} style={styles.icone} />
+          {/*  */}
           <Text style={styles.text}>15º</Text>
           <Text style={styles.text}>2%</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.text}>14:00</Text>
-          <Text>Icon</Text>
+          {/*  */}
+          <Teste width={25} height={25} style={styles.icone} />
+          {/*  */}
           <Text style={styles.text}>18º</Text>
           <Text style={styles.text}>1%</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.text}>15:00</Text>
-          <Text>Icon</Text>
+          {/*  */}
+          <Teste width={25} height={25} style={styles.icone} />
+          {/*  */}
           <Text style={styles.text}>18º</Text>
           <Text style={styles.text}>0%</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.text}>16:00</Text>
-          <Text>Icon</Text>
+          {/*  */}
+          <Teste width={25} height={25} style={styles.icone} />
+          {/*  */}
           <Text style={styles.text}>18º</Text>
           <Text style={styles.text}>0%</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.text}>17:00</Text>
-          <Text>Icon</Text>
+          {/*  */}
+          <Teste width={25} height={25} style={styles.icone} />
+          {/*  */}
           <Text style={styles.text}>17º</Text>
           <Text style={styles.text}>0%</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.text}>18:00</Text>
-          <Text>Icon</Text>
+          {/*  */}
+          <Teste width={25} height={25} style={styles.icone} />
+          {/*  */}
           <Text style={styles.text}>16º</Text>
           <Text style={styles.text}>0%</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.text}>19:00</Text>
-          <Text>Icon</Text>
+          {/*  */}
+          <Teste width={25} height={25} style={styles.icone} />
+          {/*  */}
           <Text style={styles.text}>15º</Text>
           <Text style={styles.text}>0%</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.text}>20:00</Text>
-          <Text>Icon</Text>
+          {/*  */}
+          <Teste width={25} height={25} style={styles.icone} />
+          {/*  */}
           <Text style={styles.text}>15º</Text>
           <Text style={styles.text}>0%</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.text}>21:00</Text>
-          <Text>Icon</Text>
+          {/*  */}
+          <Teste width={25} height={25} style={styles.icone} />
+          {/*  */}
           <Text style={styles.text}>14º</Text>
           <Text style={styles.text}>0%</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.text}>22:00</Text>
-          <Text>Icon</Text>
+          {/*  */}
+          <Teste width={25} height={25} style={styles.icone} />
+          {/*  */}
           <Text style={styles.text}>13º</Text>
           <Text style={styles.text}>10%</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.text}>23:00</Text>
-          <Text>Icon</Text>
+          {/*  */}
+          <Teste width={25} height={25} style={styles.icone} />
+          {/*  */}
           <Text style={styles.text}>13º</Text>
           <Text style={styles.text}>10%</Text>
         </View>
@@ -157,5 +205,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#FFF",
+    marginTop: 2,
+  },
+  icone: {
+    marginBottom: 2,
+    marginTop: 2,
   },
 });

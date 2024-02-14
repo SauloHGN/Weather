@@ -14,66 +14,48 @@ import Animated, {
   withSpring,
   Easing,
 } from "react-native-reanimated";
+import LottieView from "lottie-react-native";
+//
+import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 //
 import Icon from "react-native-vector-icons/FontAwesome";
 import Loc from "../../assets/iconsWeather/location.svg";
 //
-// Dia Parcialmente Nublado = "../../assets/iconsWeather/sunnyCloud.svg";
-// Noite Parcialmente Nublada = "../../assets/iconsWeather/cloudyMoon.svg";
-// Chuva Dia = "../../assets/iconsWeather/cloudySunRain.svg";
-// Nuvem + Chuva = "../../assets/iconsWeather/cloudyRain1.svg";
-// Nuvem + Trovão = "../../assets/iconsWeather/cloudyThunder.svg";
-// Chuva + Trovão = "../../assets/iconsWeather/heavyRain1.svg";
-// Dia Limpo = "../../assets/iconsWeather/clearSun.svg";
-// Noite Limpa = "../../assets/iconsWeather/nightClear1.svg";
-// Nublado = "../../assets/iconsWeather/Cloudy1.svg";
-// Nevando = "../../assets/iconsWeather/Snowy.svg";
-
+// Icones Personalizados
 var getWeatherIcon = (clima, time) => {
   let iconSource;
-  console.log("Passou!");
-  console.log("", clima);
-  console.log("", time);
   switch (true) {
-    case clima == "ensolarado":
-      iconSource = require("../../assets/iconsWeather/clearSun.svg");
+    case clima == "Ensolarado":
+      iconSource = require("../../assets/gifs/Animation-ClearSol.json");
       break;
-    case "nublado":
-      iconSource = require("../../assets/iconsWeather/Cloudy1.svg");
+    case clima == "Nublado":
+      iconSource = require("../../assets/gifs/Animation-Nublado.json");
       break;
-    case clima == "chuvoso":
-      iconSource = require("../../assets/iconsWeather/cloudyRain1.svg");
+    case clima == "Chuvoso":
+      iconSource = require("../../assets/gifs/Animation-Chuva.json");
       break;
-    case "tempestade":
-      iconSource = require("../../assets/iconsWeather/heavyRain1.svg");
+    case clima == "Tempestade":
+      iconSource = require("../../assets/gifs/Animation-ChuvaTrovao.json");
       break;
-    case "neve":
-      iconSource = require("../../assets/iconsWeather/Snowy.svg");
+    case clima == "Neve":
+      iconSource = require("../../assets/gifs/Animation-Neve.json");
       break;
-    case clima == "trovoada":
-      iconSource = require("../../assets/iconsWeather/cloudyThunder.svg");
+    case clima == "Parc. Nublado" && time == "dia":
+      iconSource = require("../../assets/gifs/Animation-ParcSol.json");
       break;
-    case clima == "parcialmente nublado" && time == "dia":
-      iconSource = require("../../assets/iconsWeather/sunnyCloud.svg");
-      break;
-    case clima == "parcialmente nublado" && time == "noite":
-      iconSource = require("../../assets/iconsWeather/cloudyMoon.svg");
+    case clima == "Parc. Nublado" && time == "noite":
+      iconSource = require("../../assets/gifs/Animation-ParcLua.json");
       break;
     default:
-      iconSource = require("../../assets/iconsWeather/cloudyMoon.svg");
+      iconSource = require("../../assets/gifs/Animation-Nublado.json");
       break;
   }
-  console.log("", iconSource);
   return iconSource;
 };
-
-//
-import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 //
 export const statusBarHeight = StatusBar.currentHeight
   ? StatusBar.currentHeight + 10
   : 35;
-//
 
 export default function Header({
   temperatura,
@@ -97,7 +79,6 @@ export default function Header({
         damping: 20,
         stiffness: 150,
         easing: Easing.inOut(Easing.ease),
-        weatherIcon,
       });
       return;
     } else {
@@ -108,10 +89,6 @@ export default function Header({
       });
     }
     //------------------------------------//
-    // Icones Personalizados
-    var weatherIcon = getWeatherIcon(clima, time);
-
-    //
   };
   return (
     <View>
@@ -119,7 +96,6 @@ export default function Header({
         <Animated.View
           style={{
             transform: [{ translateX: searchBarTranslateX }],
-            opacity: isSearchBarOpen ? 1 : 1,
           }}>
           {/* Texto de pesquisa*/}
           <TextInput
@@ -139,9 +115,14 @@ export default function Header({
 
       <View style={styles.container}>
         <View style={styles.content}>
-          <Image
+          <LottieView
             source={getWeatherIcon(clima, time)}
-            style={{ width: 100, height: 100 }}
+            style={{
+              width: 100,
+              height: 100,
+              marginStart: 5,
+            }}
+            autoPlay
           />
           <Text style={styles.temperatura}>
             {"  "}
@@ -152,9 +133,8 @@ export default function Header({
           <Text style={styles.clima}>{clima}</Text>
 
           <Text style={styles.localizacao}>
-            {loc}
             {"  "}
-            <Loc width={16} height={16} color="#FFF" />
+            {loc} <Loc width={16} height={16} color="#FFF" />
           </Text>
 
           <Text style={styles.infos}>
@@ -173,20 +153,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingLeft: 14,
     paddingRight: 14,
-    paddingBottom: 20,
   },
   content: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 50,
+    marginTop: 20,
   },
   temperatura: {
     flex: 1,
     color: "#FFF",
     fontSize: 76,
     fontWeight: "500",
-    marginTop: 5,
     justifyContent: "center",
   },
   clima: {

@@ -12,16 +12,33 @@ import Footer from "../../componentes/Footer";
 import { LinearGradient } from "expo-linear-gradient";
 //
 import { useOrientation } from "../../scripts/useOrientation";
+//
+const Tempo = "Chuvoso";
+
+const getGradientColors = {
+  Dia: ["#29B2DD", "#33AADD", "#1A73C0"],
+  Noite: ["#1E2B58", "#353283", "#48459A"],
+  Nublado: ["#A6ACB8", "#848482", "#696969"],
+  Chuvoso: ["#7B97AB", "#759696", "#4D5665"],
+};
+
+const getGradientLocations = {
+  Dia: [0.2, 0.3, 0.65],
+  Noite: [0.2, 0.9, 0.95],
+  Nublado: [0.1, 0.7, 0.9],
+  Chuvoso: [0, 0.25, 0.75],
+};
 
 export default function Home() {
   //const orientation = useOrientation();
   //
-
+  const localizacaoGradient = getGradientLocations[Tempo];
+  const colorsGradient = getGradientColors[Tempo];
   return (
     <LinearGradient
       // Background Linear Gradient
-      colors={["#7DA17D", "#607D7F", "#4D5657"]}
-      locations={[0.15, 0.35, 0.85]}
+      colors={colorsGradient}
+      locations={localizacaoGradient}
       useAngle={true}
       angle={167}
       angleCenter={{ x: 0.5, y: 0.5 }}
@@ -32,7 +49,7 @@ export default function Home() {
         <ScrollView>
           <Header
             temperatura="17"
-            clima="ensolarado"
+            clima="Nublado"
             maxTemp="20º"
             minTemp="12º"
             loc="Londres"
