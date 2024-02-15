@@ -49,7 +49,7 @@ export default function Home() {
         <ScrollView>
           <Header
             temperatura="17"
-            clima="Nublado"
+            clima="Chuvoso"
             maxTemp="20º"
             minTemp="12º"
             loc="Londres"

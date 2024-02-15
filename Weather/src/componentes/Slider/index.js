@@ -9,6 +9,16 @@ import {
 } from "react-native";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 //
+import DParcNublado from "../../assets/iconsWeather/sunnyCloud.svg";
+import NParcNublado from "../../assets/iconsWeather/cloudyMoon.svg";
+import Chuva from "../../assets/iconsWeather/cloudyRain1.svg";
+import Trovoada from "../../assets/iconsWeather/cloudyThunder.svg";
+import ChuvaT from "../../assets/iconsWeather/heavyRain1.svg";
+import DLimpo from "../../assets/iconsWeather/clearSun.svg";
+import NLimpa from "../../assets/iconsWeather/nightClear1.svg";
+import Nublado from "../../assets/iconsWeather/Cloudy1.svg";
+import Neve from "../../assets/iconsWeather/Snowy.svg";
+//
 import Teste from "../../assets/iconsWeather/sunnyCloud.svg";
 const Icon = {};
 // Dia Parcialmente Nublado = "../../assets/iconsWeather/sunnyCloud.svg";
@@ -50,7 +60,7 @@ export default function Slider() {
         <View style={styles.item}>
           <Text style={styles.text}>10:00</Text>
           {/*  */}
-          <Teste width={25} height={25} style={styles.icone} />
+          <Chuva width={25} height={25} style={styles.icone} />
           {/*  */}
           <Text style={styles.text}>13º</Text>
           <Text style={styles.text}>0%</Text>
@@ -59,7 +69,7 @@ export default function Slider() {
         <View style={styles.item}>
           <Text style={styles.text}>11:00</Text>
           {/*  */}
-          <Teste width={25} height={25} style={styles.icone} />
+          <ChuvaT width={25} height={25} style={styles.icone} />
           {/*  */}
           <Text style={styles.text}>13º</Text>
           <Text style={styles.text}>2%</Text>
@@ -68,7 +78,7 @@ export default function Slider() {
         <View style={styles.item}>
           <Text style={styles.text}>12:00</Text>
           {/*  */}
-          <Teste width={25} height={25} style={styles.icone} />
+          <Trovoada width={25} height={25} style={styles.icone} />
           {/*  */}
           <Text style={styles.text}>14º</Text>
           <Text style={styles.text}>2%</Text>
@@ -86,7 +96,7 @@ export default function Slider() {
         <View style={styles.item}>
           <Text style={styles.text}>14:00</Text>
           {/*  */}
-          <Teste width={25} height={25} style={styles.icone} />
+          <Nublado width={25} height={25} style={styles.icone} />
           {/*  */}
           <Text style={styles.text}>18º</Text>
           <Text style={styles.text}>1%</Text>
@@ -95,7 +105,7 @@ export default function Slider() {
         <View style={styles.item}>
           <Text style={styles.text}>15:00</Text>
           {/*  */}
-          <Teste width={25} height={25} style={styles.icone} />
+          <Neve width={25} height={25} style={styles.icone} />
           {/*  */}
           <Text style={styles.text}>18º</Text>
           <Text style={styles.text}>0%</Text>
@@ -104,7 +114,7 @@ export default function Slider() {
         <View style={styles.item}>
           <Text style={styles.text}>16:00</Text>
           {/*  */}
-          <Teste width={25} height={25} style={styles.icone} />
+          <DParcNublado width={25} height={25} style={styles.icone} />
           {/*  */}
           <Text style={styles.text}>18º</Text>
           <Text style={styles.text}>0%</Text>
@@ -113,7 +123,7 @@ export default function Slider() {
         <View style={styles.item}>
           <Text style={styles.text}>17:00</Text>
           {/*  */}
-          <Teste width={25} height={25} style={styles.icone} />
+          <NParcNublado width={25} height={25} style={styles.icone} />
           {/*  */}
           <Text style={styles.text}>17º</Text>
           <Text style={styles.text}>0%</Text>
@@ -122,7 +132,7 @@ export default function Slider() {
         <View style={styles.item}>
           <Text style={styles.text}>18:00</Text>
           {/*  */}
-          <Teste width={25} height={25} style={styles.icone} />
+          <DLimpo width={25} height={25} style={styles.icone} />
           {/*  */}
           <Text style={styles.text}>16º</Text>
           <Text style={styles.text}>0%</Text>
@@ -131,7 +141,7 @@ export default function Slider() {
         <View style={styles.item}>
           <Text style={styles.text}>19:00</Text>
           {/*  */}
-          <Teste width={25} height={25} style={styles.icone} />
+          <NLimpa width={25} height={25} style={styles.icone} />
           {/*  */}
           <Text style={styles.text}>15º</Text>
           <Text style={styles.text}>0%</Text>
