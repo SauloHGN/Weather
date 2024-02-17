@@ -1,13 +1,25 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
+import NetInfo from "@react-native-community/netinfo";
+//
 import Home from "./src/pages/Home";
 import Loading from "./src/pages/Loading";
 
 export default function App() {
-  const looding = true;
+  const [isConnected, setIsConnected] = useState(null);
 
-  if (looding == true) {
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      setIsConnected(state.isConnected);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  if (isConnected == null) {
     return <Loading />;
   }
 
