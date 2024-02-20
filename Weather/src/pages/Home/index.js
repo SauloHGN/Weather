@@ -1,5 +1,8 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ScrollView, StyleSheet, View, Text, Animated } from "react-native";
+//
+import { ClimaAtual } from "../../api/Api";
+import { ForecastWeek } from "../../api/Api";
 //
 import Header, { statusBarHeight } from "../../componentes/Header";
 import Slider from "../../componentes/Slider";
@@ -13,6 +16,26 @@ import { LinearGradient } from "expo-linear-gradient";
 //
 import { useOrientation } from "../../scripts/useOrientation";
 //
+//
+/*ClimaAtual("city").then((ClimaData) => {
+  console.log("Dados do clima:", ClimaData);
+
+  var temperatura = ClimaAtual.temp;
+  var clima = ClimaAtual.clima;
+  var maxTemp = ClimaAtual.maxTemp;
+  var minTemp = ClimaAtual.minTemp;
+  var sensacao = ClimaAtual.sensacao;
+  var pressao = ClimaAtual.pressao;
+  var humidade = ClimaAtual. humidade;
+        sensacao: data.main.feels_like,
+        pressao: data.main.pressure,
+        humidade: data.main.humidity,
+        velVento: data.wind.speed,
+        sunrise: sunriseTimestamp.toLocaleTimeString(),
+        sunset: sunsetTimestamp.toLocaleTimeString(),
+        paisCode: data.sys.country,
+
+});*/
 const Tempo = "Chuvoso";
 
 const getGradientColors = {
@@ -30,7 +53,13 @@ const getGradientLocations = {
 };
 
 export default function Home() {
-  //const orientation = useOrientation();
+  //const orientation = useOrientation(); //  MUDANÇA DE PORTAIT (NÃO FUNCIONAL)
+  const [climaData, setClimaData] = useState(null);
+  useEffect(() => {
+    ClimaAtual("São Paulo")
+      .then((data) => setClimaData(data))
+      .catch((error) => console.error(error));
+  }, []);
   //
   const localizacaoGradient = getGradientLocations[Tempo];
   const colorsGradient = getGradientColors[Tempo];
@@ -48,18 +77,19 @@ export default function Home() {
       <View style={styles.container}>
         <ScrollView>
           <Header
-            temperatura="17"
-            clima="Chuvoso"
-            maxTemp="20º"
-            minTemp="12º"
-            loc="Londres"
-            sensacao="16º"
+            temperatura={ClimaAtual.temp}
+            clima={ClimaAtual.clima}
+            maxTemp={ClimaAtual.maxTemp}
+            minTemp={ClimaAtual.minTemp}
+            loc={ClimaAtual.city}
+            sensacao={ClimaAtual.sensacao}
+            paisCode={ClimaAtual.paisCode}
             time="dia"
           />
           <Slider />
           <WeekTemp />
           <Circles />
-          <AirQuality airQuality="50" airQualityNivel="Good" />
+          <AirQuality airQuality="250" airQualityNivel="Good" />
           <SunTime />
           <Footer />
           {/*  */}

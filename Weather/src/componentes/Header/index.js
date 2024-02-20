@@ -15,6 +15,7 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 import LottieView from "lottie-react-native";
+import { SearchCity } from "../../api/Api";
 //
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 //
@@ -64,8 +65,17 @@ export default function Header({
   minTemp,
   loc,
   sensacao,
+  paisCode,
   time,
 }) {
+  // Pesquisar
+  const [searchText, setSearchText] = useState("");
+  const handleSearch = () => {
+    SearchCity(searchText);
+
+    setSearchText(""); // Clear
+  };
+
   //Animação SearchBar
   const [isSearchBarOpen, setSearchBarOpen] = useState(false);
   const searchBarTranslateX = useSharedValue(vw(100));
@@ -102,6 +112,9 @@ export default function Header({
             editable={isSearchBarOpen ? true : false}
             style={[styles.searchBar]}
             placeholder="Pesquisar"
+            value={searchText}
+            onChangeText={setSearchText}
+            onSubmitEditing={handleSearch}
           />
         </Animated.View>
 
@@ -133,6 +146,8 @@ export default function Header({
           <Text style={styles.clima}>{clima}</Text>
 
           <Text style={styles.localizacao}>
+            {"  "}
+            {paisCode}
             {"  "}
             {loc} <Loc width={16} height={16} color="#FFF" />
           </Text>
