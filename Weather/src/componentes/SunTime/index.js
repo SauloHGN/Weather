@@ -5,7 +5,7 @@ import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import Nascer from "../../assets/iconsWeather/sunrise1.svg";
 import Por from "../../assets/iconsWeather/sunset1.svg";
 
-export default function SunTime() {
+export default function SunTime({ sunrise, sunset }) {
   return (
     <View style={styles.container}>
       <View style={styles.item}>
@@ -16,7 +16,7 @@ export default function SunTime() {
           </View>
           <Text style={styles.titulo}>Nascer do Sol</Text>
         </View>
-        <Text style={styles.textTime}>6:00</Text>
+        <Text style={styles.textTime}>{sunrise}</Text>
       </View>
 
       <View style={styles.item}>
@@ -27,7 +27,7 @@ export default function SunTime() {
           </View>
           <Text style={styles.titulo}>Por do Sol</Text>
         </View>
-        <Text style={styles.textTime}>17:48</Text>
+        <Text style={styles.textTime}>{sunset}</Text>
       </View>
     </View>
   );

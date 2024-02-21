@@ -12,7 +12,7 @@ export default function Loading() {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <StatusBar backgroundColor="#0000" style="light" />
+        <StatusBar backgroundColor="#18181B" style="light" />
       </SafeAreaView>
       <View style={styles.logo}>
         <Logo height={vw(55)} weight={vw(55)} />
@@ -29,7 +29,7 @@ export default function Loading() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: "#18181B",
     justifyContent: "center",
     alignItems: "center",
   },

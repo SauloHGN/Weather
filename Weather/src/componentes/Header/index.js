@@ -15,7 +15,7 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 import LottieView from "lottie-react-native";
-import { SearchCity } from "../../api/Api";
+import { SearchCity, getClimaAtual } from "../../api/Api";
 //
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 //
@@ -146,10 +146,7 @@ export default function Header({
           <Text style={styles.clima}>{clima}</Text>
 
           <Text style={styles.localizacao}>
-            {"  "}
-            {paisCode}
-            {"  "}
-            {loc} <Loc width={16} height={16} color="#FFF" />
+            {loc}, {paisCode} <Loc width={16} height={16} color="#FFF" />
           </Text>
 
           <Text style={styles.infos}>
@@ -195,7 +192,6 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 16,
     justifyContent: "center",
-    marginTop: 20,
   },
   infos: {
     color: "#FFF",

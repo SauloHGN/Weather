@@ -6,8 +6,9 @@ import Umidade from "../../assets/iconsWeather/gota.svg";
 import Lua from "../../assets/iconsWeather/moon.svg";
 import Visibilidade from "../../assets/iconsWeather/visibility.svg";
 import Pressao from "../../assets/iconsWeather/pressure.svg";
+import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
-export default function Circles() {
+export default function Circles({ umidade, vento, visibilidade, pressao }) {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
@@ -16,7 +17,7 @@ export default function Circles() {
             <Umidade width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Umidade</Text>
-          <Text style={styles.InfoCircles}>50%</Text>
+          <Text style={styles.InfoCircles}>{umidade}%</Text>
         </View>
 
         <View style={styles.item}>
@@ -24,7 +25,7 @@ export default function Circles() {
             <Vento width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Vento</Text>
-          <Text style={styles.InfoCircles}>5km/h</Text>
+          <Text style={styles.InfoCircles}>{vento} km/h</Text>
         </View>
       </View>
 
@@ -34,7 +35,7 @@ export default function Circles() {
             <Visibilidade width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Visibilidade</Text>
-          <Text style={styles.InfoCircles}>Boa</Text>
+          <Text style={styles.InfoCircles}>{visibilidade}</Text>
         </View>
 
         <View style={styles.item}>
@@ -43,7 +44,7 @@ export default function Circles() {
             <Pressao width={40} height={40} />
           </View>
           <Text style={styles.TextCircles}>Pressão</Text>
-          <Text style={styles.InfoCircles}>19</Text>
+          <Text style={styles.InfoCircles}>{pressao} hPa</Text>
         </View>
       </View>
 
@@ -89,8 +90,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: 20,
     borderRadius: 20,
-    height: 120,
-    width: 150,
+    height: vh(15),
+    width: vw(40),
   },
   iconContainer: {
     justifyContent: "center",

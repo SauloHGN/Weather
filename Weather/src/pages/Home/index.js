@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { ScrollView, StyleSheet, View, Text, Animated } from "react-native";
 //
-import { ClimaAtual } from "../../api/Api";
+import { getClimaAtual } from "../../api/Api";
 import { ForecastWeek } from "../../api/Api";
 //
 import Header, { statusBarHeight } from "../../componentes/Header";
@@ -36,36 +36,38 @@ import { useOrientation } from "../../scripts/useOrientation";
         paisCode: data.sys.country,
 
 });*/
-const Tempo = "Chuvoso";
+
+const Tempo = "Rain"; //climaAtual.clima; ddfds
 
 const getGradientColors = {
   Dia: ["#29B2DD", "#33AADD", "#1A73C0"],
   Noite: ["#1E2B58", "#353283", "#48459A"],
-  Nublado: ["#A6ACB8", "#848482", "#696969"],
-  Chuvoso: ["#7B97AB", "#759696", "#4D5665"],
+  Clouds: ["#A6ACB8", "#848482", "#696969"],
+  Rain: ["#7B97AB", "#759696", "#4D5665"],
+  default: ["#18181B", "#18181B"],
 };
 
 const getGradientLocations = {
   Dia: [0.2, 0.3, 0.65],
   Noite: [0.2, 0.9, 0.95],
-  Nublado: [0.1, 0.7, 0.9],
-  Chuvoso: [0, 0.25, 0.75],
+  Clouds: [0.1, 0.7, 0.9],
+  Rain: [0, 0.25, 0.75],
 };
 
 export default function Home() {
   //const orientation = useOrientation(); //  MUDANÇA DE PORTAIT (NÃO FUNCIONAL)
-  const [climaData, setClimaData] = useState(null);
-  useEffect(() => {
-    ClimaAtual("São Paulo")
-      .then((data) => setClimaData(data))
-      .catch((error) => console.error(error));
-  }, []);
-  //
+
+  const climaAtual = () => {
+    getClimaAtual();
+  };
+
+  console.log("Teste", climaAtual.temp, " ", climaAtual.cidade);
+  //teste
   const localizacaoGradient = getGradientLocations[Tempo];
-  const colorsGradient = getGradientColors[Tempo];
+  const colorsGradient = getGradientColors[Tempo] ?? getGradientColors.default;
   return (
     <LinearGradient
-      // Background Linear Gradient
+      // Background Linear Gradient teste
       colors={colorsGradient}
       locations={localizacaoGradient}
       useAngle={true}
@@ -77,20 +79,25 @@ export default function Home() {
       <View style={styles.container}>
         <ScrollView>
           <Header
-            temperatura={ClimaAtual.temp}
-            clima={ClimaAtual.clima}
-            maxTemp={ClimaAtual.maxTemp}
-            minTemp={ClimaAtual.minTemp}
-            loc={ClimaAtual.city}
-            sensacao={ClimaAtual.sensacao}
-            paisCode={ClimaAtual.paisCode}
+            temperatura={climaAtual.temp}
+            clima={climaAtual.clima}
+            maxTemp={climaAtual.maxTemp}
+            minTemp={climaAtual.minTemp}
+            loc={climaAtual.cidade}
+            sensacao={climaAtual.sensacao}
+            paisCode={climaAtual.paisCode}
             time="dia"
           />
           <Slider />
           <WeekTemp />
-          <Circles />
+          <Circles
+            umidade={climaAtual.umidade}
+            vento={climaAtual.velVento}
+            visibilidade={climaAtual.visibilidade}
+            pressao={climaAtual.pressao}
+          />
           <AirQuality airQuality="250" airQualityNivel="Good" />
-          <SunTime />
+          <SunTime sunrise={climaAtual.sunrise} sunset={climaAtual.sunset} />
           <Footer />
           {/*  */}
         </ScrollView>

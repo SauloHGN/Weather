@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   airQualityNumber: {
-    fontSize: 35,
+    fontSize: 30,
     fontWeight: "500",
     marginStart: 10,
     color: "#FFF",
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
     color: "#e7e7e7",
-    marginTop: 16,
+    marginTop: 10,
     marginStart: 40,
   },
   barra: {
