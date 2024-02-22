@@ -1,8 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { ScrollView, StyleSheet, View, Text, Animated } from "react-native";
-//
-import { getClimaAtual } from "../../api/Api";
-import { ForecastWeek } from "../../api/Api";
+import { LinearGradient } from "expo-linear-gradient";
 //
 import Header, { statusBarHeight } from "../../componentes/Header";
 import Slider from "../../componentes/Slider";
@@ -11,32 +9,13 @@ import Circles from "../../componentes/Circles";
 import SunTime from "../../componentes/SunTime";
 import AirQuality from "../../componentes/AirQuality";
 import Footer from "../../componentes/Footer";
+import { StartLocationData, getStartLocation } from "../../api/Api";
+import { localizacaoAtual } from "../../../App";
 //
-import { LinearGradient } from "expo-linear-gradient";
+//import { getClimaAtual } from "../../api/Api";
+//import { ForecastWeek } from "../../api/Api";
+//import { useOrientation } from "../../scripts/useOrientation";
 //
-import { useOrientation } from "../../scripts/useOrientation";
-//
-//
-/*ClimaAtual("city").then((ClimaData) => {
-  console.log("Dados do clima:", ClimaData);
-
-  var temperatura = ClimaAtual.temp;
-  var clima = ClimaAtual.clima;
-  var maxTemp = ClimaAtual.maxTemp;
-  var minTemp = ClimaAtual.minTemp;
-  var sensacao = ClimaAtual.sensacao;
-  var pressao = ClimaAtual.pressao;
-  var humidade = ClimaAtual. humidade;
-        sensacao: data.main.feels_like,
-        pressao: data.main.pressure,
-        humidade: data.main.humidity,
-        velVento: data.wind.speed,
-        sunrise: sunriseTimestamp.toLocaleTimeString(),
-        sunset: sunsetTimestamp.toLocaleTimeString(),
-        paisCode: data.sys.country,
-
-});*/
-
 const Tempo = "Rain"; //climaAtual.clima; ddfds
 
 const getGradientColors = {
@@ -54,12 +33,19 @@ const getGradientLocations = {
   Rain: [0, 0.25, 0.75],
 };
 
+// export const StartData = (currentClimaData) => {
+//   return currentClimaData;
+// };
+
 export default function Home() {
   //const orientation = useOrientation(); //  MUDANÇA DE PORTAIT (NÃO FUNCIONAL)
+  const [climaAtual, setClimaAtual] = useState(
+    StartLocationData(localizacaoAtual)
+  );
 
-  const climaAtual = () => {
-    getClimaAtual();
-  };
+  // const climaAtual = () => {
+  //   getClimaAtual();
+  // };
 
   console.log("Teste", climaAtual.temp, " ", climaAtual.cidade);
   //teste

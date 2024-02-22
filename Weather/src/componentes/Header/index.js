@@ -15,7 +15,7 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 import LottieView from "lottie-react-native";
-import { SearchCity, getClimaAtual } from "../../api/Api";
+import { SearchCity } from "../../api/Api";
 //
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 //
@@ -72,7 +72,6 @@ export default function Header({
   const [searchText, setSearchText] = useState("");
   const handleSearch = () => {
     SearchCity(searchText);
-
     setSearchText(""); // Clear
   };
 
