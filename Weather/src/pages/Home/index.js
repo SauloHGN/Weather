@@ -9,14 +9,15 @@ import Circles from "../../componentes/Circles";
 import SunTime from "../../componentes/SunTime";
 import AirQuality from "../../componentes/AirQuality";
 import Footer from "../../componentes/Footer";
-import { StartLocationData, getStartLocation } from "../../api/Api";
-import { localizacaoAtual } from "../../../App";
+import { CurrentLoc, StartLocationData, getClimaAtual } from "../../api/Api";
+import { getCurrentPositionAsync } from "expo-location";
+import { localizacaoAtual } from "../Loading";
 //
 //import { getClimaAtual } from "../../api/Api";
 //import { ForecastWeek } from "../../api/Api";
 //import { useOrientation } from "../../scripts/useOrientation";
 //
-const Tempo = "Rain"; //climaAtual.clima; ddfds
+var Tempo = "Rain"; //climaAtual.clima; ddfds
 
 const getGradientColors = {
   Dia: ["#29B2DD", "#33AADD", "#1A73C0"],
@@ -33,19 +34,11 @@ const getGradientLocations = {
   Rain: [0, 0.25, 0.75],
 };
 
-// export const StartData = (currentClimaData) => {
-//   return currentClimaData;
-// };
-
 export default function Home() {
   //const orientation = useOrientation(); //  MUDANÇA DE PORTAIT (NÃO FUNCIONAL)
-  const [climaAtual, setClimaAtual] = useState(
-    StartLocationData(localizacaoAtual)
-  );
+  const [climaAtual, setClimaAtual] = useState(CurrentLoc(localizacaoAtual));
 
-  // const climaAtual = () => {
-  //   getClimaAtual();
-  // };
+  //useEffect(() => {}, [climaAtual]);
 
   console.log("Teste", climaAtual.temp, " ", climaAtual.cidade);
   //teste

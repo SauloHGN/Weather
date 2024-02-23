@@ -1,18 +1,55 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Text, Animated, SafeAreaView } from "react-native";
-import Logo from "../../assets/iconsWeather/logo.svg";
+import {
+  requestForegroundPermissionsAsync,
+  getCurrentPositionAsync,
+} from "expo-location";
+import NetInfo from "@react-native-community/netinfo";
 //
-import Header, { statusBarHeight } from "../../componentes/Header";
+import Logo from "../../assets/iconsWeather/logo.svg";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 //
 import LottieView from "lottie-react-native";
 
-export default function Loading() {
+export var localizacaoAtual;
+
+export default function Loading({ navigation }) {
+  const [isConnected, setIsConnected] = useState(null);
+  const [location, setLocation] = useState(null);
+
+  useEffect(() => {
+    // Checar Localização
+    requestLocationPermissions();
+
+    // Checar conexão com internet
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      setIsConnected(state.isConnected);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isConnected === true) {
+      navigation.replace("Home");
+    }
+  }, [isConnected]);
+
+  async function requestLocationPermissions() {
+    const { granted } = await requestForegroundPermissionsAsync();
+
+    if (granted) {
+      localizacaoAtual = await getCurrentPositionAsync({});
+      setLocation(localizacaoAtual);
+    }
+  }
+
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <StatusBar backgroundColor="#18181B" style="light" />
+        <StatusBar backgroundColor="black" style="light" />
       </SafeAreaView>
       <View style={styles.logo}>
         <Logo height={vw(55)} weight={vw(55)} />
@@ -29,7 +66,7 @@ export default function Loading() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#18181B",
+    backgroundColor: "black",
     justifyContent: "center",
     alignItems: "center",
   },

@@ -17,26 +17,23 @@ export const getClimaAtual = () => {
   return ClimaData;
 };
 
-export const getDadosSlider = () => {
-  return DadosSlider;
-};
+export const CurrentLoc = (localizacaoAtual) => {
+  let loc = localizacaoAtual;
+  StartLocationData(loc);
 
-export const getDadosWeekTemp = () => {
-  return DadosWeekTemp;
-};
-
-export const getStartLocation = () => {
-  return currentClimaData;
+  return { ClimaData, DadosSlider, DadosWeekTemp };
 };
 
 // Pesquisa da Privisão do tempo
 export const SearchCity = (searchText) => {
   city = searchText;
   ClimaAtual(city);
+  ForecastWeek(lat, lon);
+  return { ClimaData, DadosSlider, DadosWeekTemp };
 };
 
 export const ClimaAtual = async function (city) {
-  let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=${lang}`;
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=${lang}`;
   console.log("URL: ", url);
   try {
     const response = await fetch(url);
@@ -81,8 +78,6 @@ export const ClimaAtual = async function (city) {
       paisCode: data.sys.country,
     };
 
-    //ForecastWeek(lat, lon);
-
     return ClimaData;
   } catch (error) {
     console.error("Falha ao se conectar a API", error);
@@ -95,23 +90,23 @@ export const ClimaAtual = async function (city) {
 };
 
 export const ForecastWeek = async function (lat, lon) {
-  let url = `http://api.openweathermap.org/data/2.5/weather/forecast/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=${lang}`;
+  let url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=${lang}`;
 
   console.log("URL: ", url);
 
   try {
     const response = await fetch(url);
     const data = await response.json();
-
+    let weekTempData;
     console.log("-------------------------------------------------------");
     console.log(data);
     console.log("-------------------------------------------------------");
 
-    const DadosSlider = data.list.slice(0, 16).map((item) => ({
+    /*const DadosSlider = data.list.slice(0, 16).map((item) => ({
       hora: item.dt_txt.split(" ")[1], // Obter a hora
       temp: item.main.temp,
       chanceChuva: item.pop * 100, // Chance de chuva em 3 horas (%)
-    }));
+    }));*/
 
     const DadosWeekTemp = data.list.forEach((item) => {
       const date = item.dt_txt.split(" ")[0]; // Obter a data
@@ -140,8 +135,11 @@ export const ForecastWeek = async function (lat, lon) {
 export const StartLocationData = async function (localizacaoAtual) {
   //
   //useLocalizacao();
-  const currentLatitude = localizacaoAtual.coords.latitude;
-  const currentLongitude = localizacaoAtual.coords.longitude;
+  console.log("", localizacaoAtual);
+  console.log("lat", localizacaoAtual.coords.latitude);
+  console.log("lon", localizacaoAtual.coords.longitude);
+  let currentLatitude = localizacaoAtual.coords.latitude;
+  let currentLongitude = localizacaoAtual.coords.longitude;
   if (currentLatitude || currentLongitude == null) {
     currentLatitude = "-23.533773";
     currentLongitude = "-46.62529";
@@ -192,12 +190,9 @@ export const StartLocationData = async function (localizacaoAtual) {
       paisCode: data.sys.country,
     };
 
-    // useEffect(() => {
-    //   getDados(currentClimaData);
-    // }, []);
-    //ForecastWeek(currentLatitude, currentLongitude);
+    ForecastWeek(currentLatitude, currentLongitude);
 
-    return currentClimaData;
+    return ClimaData;
   } catch (error) {
     console.error("Falha ao se conectar a API", error);
     return Alert.alert(
