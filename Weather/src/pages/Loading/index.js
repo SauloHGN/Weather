@@ -7,16 +7,16 @@ import {
 } from "expo-location";
 import NetInfo from "@react-native-community/netinfo";
 //
+import useLocationStore from "../../scripts/useLocationStore";
 import Logo from "../../assets/iconsWeather/logo.svg";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 //
 import LottieView from "lottie-react-native";
 
-export var localizacaoAtual;
-
 export default function Loading({ navigation }) {
   const [isConnected, setIsConnected] = useState(null);
-  const [location, setLocation] = useState(null);
+  const setLocation = useLocationStore((state) => state.setLocation);
+  //const [location, setLocation] = useState(null);
 
   useEffect(() => {
     // Checar Localização
@@ -43,6 +43,7 @@ export default function Loading({ navigation }) {
     if (granted) {
       localizacaoAtual = await getCurrentPositionAsync({});
       setLocation(localizacaoAtual);
+    } else {
     }
   }
 

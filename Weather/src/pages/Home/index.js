@@ -37,10 +37,11 @@ const getGradientLocations = {
 export default function Home() {
   //const orientation = useOrientation(); //  MUDANÇA DE PORTAIT (NÃO FUNCIONAL)
   const [climaAtual, setClimaAtual] = useState(CurrentLoc(localizacaoAtual));
+  //const climaAtual = null;
 
   //useEffect(() => {}, [climaAtual]);
 
-  console.log("Teste", climaAtual.temp, " ", climaAtual.cidade);
+  //console.log("Teste", climaAtual.temp, " ", climaAtual.cidade);
   //teste
   const localizacaoGradient = getGradientLocations[Tempo];
   const colorsGradient = getGradientColors[Tempo] ?? getGradientColors.default;
