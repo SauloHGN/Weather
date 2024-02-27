@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Alert } from "react-native";
+import { create } from "zustand";
 import { calculateAQI } from "../api/modules";
 import useLocationStore from "../scripts/useLocationStore";
 const fetch = require("node-fetch");
@@ -14,7 +15,15 @@ let DadosWeekTemp = {};
 let AirQualityData = {};
 let AqiNivel = "";
 
-// Acesso de Dados
+//Zustand Controle de Estados
+export const useWeatherStore = create((set) => ({
+  ClimaData: null,
+  DadosSlider: null,
+  DadosWeekTemp: null,
+  AirQualityData: null,
+  AqiNivel: null,
+  setWeatherData: (data) => set(data),
+}));
 
 export const CurrentLoc = () => {
   let lat = "";
@@ -26,8 +35,7 @@ export const CurrentLoc = () => {
   }
 
   VerificarLoc(lat, lon);
-  //StartLocationData(lat, lon);
-  AirPollution(lat, lon);
+  StartLocationData(lat, lon);
   return { ClimaData, DadosSlider, DadosWeekTemp, AirQualityData, AqiNivel };
 };
 
@@ -48,21 +56,21 @@ export const ClimaAtual = async function (city) {
       lat: data.coord.lat,
       lon: data.coord.lon,
     };
-    let sunriseTimestamp = new Date(data.sys.sunrise * 1000);
-    let sunsetTimestamp = new Date(data.sys.sunset * 1000);
+    //let sunriseTimestamp = new Date(data.sys.sunrise * 1000);
+    //let sunsetTimestamp = new Date(data.sys.sunset * 1000);
     let visibilidadeBruta = data.visibility;
 
-    console.log("COORDEnADA", coord);
+    //console.log("COORDEnADA", coord);
     //
-    console.log("-------------------------------------------------------");
+    //console.log("-------------------------------------------------------");
     //console.log(data);
-    console.log("-------------------------------------------------------");
+    //console.log("-------------------------------------------------------");
 
     ClimaData = {
-      temp: Math.round(data.main.temp),
+      temperatura: Math.round(data.main.temp),
       clima: data.weather.main,
-      maxTemp: Math.round(data.main.temp_max),
-      minTemp: Math.round(data.main.temp_min),
+      maxTemp: Math.ceil(data.main.temp_max),
+      minTemp: Math.floor(data.main.temp_min),
       sensacao: Math.round(data.main.feels_like),
       pressao: data.main.pressure,
       umidade: data.main.humidity,
@@ -71,11 +79,11 @@ export const ClimaAtual = async function (city) {
         visibilidadeBruta < 1000
           ? `${visibilidadeBruta} m`
           : `${visibilidadeBruta / 1000} km/h`,
-      sunrise: sunriseTimestamp.toLocaleTimeString([], {
+      sunrise: new Date(data.sys.sunrise * 1000).toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
       }),
-      sunset: sunsetTimestamp.toLocaleTimeString([], {
+      sunset: new Date(data.sys.sunset * 1000).toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
       }),
@@ -108,18 +116,15 @@ export const StartLocationData = async function (lat, lon) {
     const data = await response.json();
 
     //
-    console.log("-------------------------------------------------------");
+    //console.log("-------------------------------------------------------");
     //console.log(data);
-    console.log("-------------------------------------------------------");
+    //console.log("-------------------------------------------------------");
 
-    //
-    let sunriseTimestamp = new Date(data.sys.sunrise * 1000);
-    let sunsetTimestamp = new Date(data.sys.sunset * 1000);
     let visibilidadeBruta = data.visibility;
 
     ClimaData = {
-      temp: Math.round(data.main.temp),
-      clima: data.weather.main,
+      temperatura: Math.round(data.main.temp),
+      clima: data.weather,
       maxTemp: Math.round(data.main.temp_max),
       minTemp: Math.round(data.main.temp_min),
       sensacao: Math.round(data.main.feels_like),
@@ -130,19 +135,20 @@ export const StartLocationData = async function (lat, lon) {
         visibilidadeBruta < 1000
           ? `${visibilidadeBruta} m`
           : `${visibilidadeBruta / 1000} km/h`,
-      sunrise: sunriseTimestamp.toLocaleTimeString([], {
+      sunrise: new Date(data.sys.sunrise * 1000).toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
       }),
-      sunset: sunsetTimestamp.toLocaleTimeString([], {
+      sunset: new Date(data.sys.sunset * 1000).toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
       }),
       cidade: data.name,
       paisCode: data.sys.country,
     };
+    //console.log(ClimaData);
 
-    ForecastWeek(lat, lon);
+    //ForecastWeek(lat, lon);
 
     return ClimaData;
   } catch (error) {
@@ -162,14 +168,14 @@ export const ForecastWeek = async function (currentLatitude, currentLongitude) {
 
   let url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=${lang}`;
 
-  console.log("URL: ", url);
+  //console.log("URL: ", url);
 
   try {
     const response = await fetch(url);
     const data = await response.json();
-    console.log("-------------------------------------------------------");
+    //console.log("-------------------------------------------------------");
     //console.log(data);
-    console.log("-------------------------------------------------------");
+    //console.log("-------------------------------------------------------");
 
     DadosSlider =
       data.list && data.list.length >= 16

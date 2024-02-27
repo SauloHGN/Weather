@@ -9,9 +9,8 @@ import Circles from "../../componentes/Circles";
 import SunTime from "../../componentes/SunTime";
 import AirQuality from "../../componentes/AirQuality";
 import Footer from "../../componentes/Footer";
+import { useWeatherStore } from "../../api/Api";
 import { CurrentLoc, StartLocationData, getClimaAtual } from "../../api/Api";
-import { getCurrentPositionAsync } from "expo-location";
-import { localizacaoAtual } from "../Loading";
 //
 //import { getClimaAtual } from "../../api/Api";
 //import { ForecastWeek } from "../../api/Api";
@@ -36,13 +35,14 @@ const getGradientLocations = {
 
 export default function Home() {
   //const orientation = useOrientation(); //  MUDANÇA DE PORTAIT (NÃO FUNCIONAL)
-  const [climaAtual, setClimaAtual] = useState(CurrentLoc(localizacaoAtual));
-  //const climaAtual = null;
+  const [climaAtual, setClimaAtual] = useState(CurrentLoc());
 
-  //useEffect(() => {}, [climaAtual]);
+  let climaData = useWeatherStore((state) => state.ClimaData);
+  let dadosSlider = useWeatherStore((state) => state.DadosSlider);
+  let dadosWeekTemp = useWeatherStore((state) => state.DadosWeekTemp);
+  let airQualityData = useWeatherStore((state) => state.AirQualityData);
+  let aqiNivel = useWeatherStore((state) => state.AqiNivel);
 
-  //console.log("Teste", climaAtual.temp, " ", climaAtual.cidade);
-  //teste
   const localizacaoGradient = getGradientLocations[Tempo];
   const colorsGradient = getGradientColors[Tempo] ?? getGradientColors.default;
   return (
@@ -68,16 +68,21 @@ export default function Home() {
             paisCode={climaAtual.paisCode}
             time="dia"
           />
-          <Slider />
-          <WeekTemp />
+          <Slider dados={dadosSlider} />
+          <WeekTemp dados={dadosWeekTemp} />
           <Circles
-            umidade={climaAtual.umidade}
+            /*umidade={climaAtual.umidade}
             vento={climaAtual.velVento}
             visibilidade={climaAtual.visibilidade}
-            pressao={climaAtual.pressao}
+            pressao={climaAtual.pressao}*/
+            teste={climaAtual}
           />
-          <AirQuality airQuality="250" airQualityNivel="Good" />
-          <SunTime sunrise={climaAtual.sunrise} sunset={climaAtual.sunset} />
+          <AirQuality airQuality={airQualityData} airQualityNivel={aqiNivel} />
+          <SunTime
+            /*sunrise={climaAtual.sunrise} sunset={climaAtual.sunset}*/ teste={
+              climaAtual
+            }
+          />
           <Footer />
           {/*  */}
         </ScrollView>

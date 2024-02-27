@@ -59,6 +59,7 @@ export const statusBarHeight = StatusBar.currentHeight
   : 35;
 
 export default function Header({
+  climaAtual,
   temperatura,
   clima,
   maxTemp,
@@ -141,7 +142,6 @@ export default function Header({
             {temperatura}
             {"º"}
           </Text>
-
           <Text style={styles.clima}>{clima}</Text>
 
           <Text style={styles.localizacao}>

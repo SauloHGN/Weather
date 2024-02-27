@@ -16,7 +16,6 @@ import LottieView from "lottie-react-native";
 export default function Loading({ navigation }) {
   const [isConnected, setIsConnected] = useState(null);
   const setLocation = useLocationStore((state) => state.setLocation);
-  //const [location, setLocation] = useState(null);
 
   useEffect(() => {
     // Checar Localização
