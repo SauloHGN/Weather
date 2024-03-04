@@ -40,7 +40,7 @@ export default function AirQuality({ airQuality, airQualityNivel }) {
         start={{ x: 0, y: 1 }}
         end={{ x: 1, y: 0 }}
         style={styles.barra}>
-        <View style={[styles.indicador, { right: indicadorPos }]}></View>
+        <View style={[styles.indicador /*{ right: indicadorPos }*/]}></View>
       </LinearGradient>
     </View>
   );

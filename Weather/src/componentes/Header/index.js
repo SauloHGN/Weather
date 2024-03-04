@@ -5,8 +5,6 @@ import {
   Text,
   StatusBar,
   TouchableOpacity,
-  SafeAreaView,
-  Image,
   TextInput,
 } from "react-native";
 import Animated, {
@@ -59,7 +57,6 @@ export const statusBarHeight = StatusBar.currentHeight
   : 35;
 
 export default function Header({
-  climaAtual,
   temperatura,
   clima,
   maxTemp,

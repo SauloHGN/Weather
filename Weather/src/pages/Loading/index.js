@@ -43,6 +43,14 @@ export default function Loading({ navigation }) {
       localizacaoAtual = await getCurrentPositionAsync({});
       setLocation(localizacaoAtual);
     } else {
+      localizacaoAtual = {
+        coords: {
+          accuracy: 100,
+          latitude: -23.5475,
+          longitude: -46.6361,
+        },
+      };
+      setLocation(localizacaoAtual);
     }
   }
 
