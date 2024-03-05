@@ -1,5 +1,5 @@
 import { Alert } from "react-native";
-import { calculateAQI } from "../api/modules";
+import { calculateAQI, calculateAQI_PM } from "../api/modules";
 import useWeatherStore from "../scripts/useWeatherStore";
 const fetch = require("node-fetch");
 
@@ -25,14 +25,19 @@ export const CurrentLoc = async function (loc) {
   //return{ClimaData, DadosSlider}
   const [ClimaData, Foorecast, AirQuality] = await Promise.all([
     StartLocationData(lat, lon),
+    temp(),
     //ForecastWeek(lat, lon),
-    //AirPollution(lat, lon),
+    AirPollution(lat, lon),
   ]);
   return { ClimaData, Foorecast, AirQuality };
 
   /*VerificarLoc(lat, lon);
   let ClimaData = StartLocationData(lat, lon);
   return { ClimaData, DadosSlider, DadosWeekTemp, AirQualityData, AqiNivel };*/
+};
+
+const temp = () => {
+  return null;
 };
 
 // Pesquisa da Privisão do tempo
@@ -84,7 +89,7 @@ export const StartLocationData = async function (lat, lon) {
       lat: data?.coord?.lat,
       lon: data?.coord?.lon,
       temperatura: Math.round(data?.main?.temp),
-      clima: data?.weather?.main,
+      clima: data?.weather[0].main,
       maxTemp: Math.round(data?.main?.temp_max),
       minTemp: Math.round(data?.main?.temp_min),
       sensacao: Math.round(data?.main?.feels_like),
@@ -198,7 +203,8 @@ export const AirPollution = async function (currentLatitude, currentLongitude) {
       nh3: data.list[0].components.nh3,
     };
 
-    let AqiNivel = calculateAQI(
+    let AqiNivel = calculateAQI_PM(AirQualityData.pm2_5);
+    /*let AqiNivel = calculateAQI(
       AirQualityData.co,
       AirQualityData.nh3,
       AirQualityData.no,
@@ -207,7 +213,8 @@ export const AirPollution = async function (currentLatitude, currentLongitude) {
       AirQualityData.pm10,
       AirQualityData.pm2_5,
       AirQualityData.so2
-    );
+    );*/
+    console.log("nivel do AQI: ", AqiNivel);
 
     return { AqiNivel, AirQualityData };
   } catch (error) {

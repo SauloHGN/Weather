@@ -11,10 +11,10 @@ export default function AirQuality({ airQuality, airQualityNivel }) {
     const maxValue = 500;
     const totalWidht = vw(89);
 
-    const newPos = (airQuality / maxValue) * totalWidht;
+    const newPos = (airQualityNivel / maxValue) * totalWidht;
 
     setIndicadorPos(newPos);
-  }, [airQuality]);
+  }, [airQualityNivel]);
 
   return (
     <View style={styles.container}>
@@ -22,11 +22,9 @@ export default function AirQuality({ airQuality, airQualityNivel }) {
       <View style={styles.separator} />
 
       <View style={styles.containerText}>
-        <Text style={styles.airQualityNumber}>{airQuality}</Text>
-        <Text></Text>
-        <Text style={styles.airQualityNivel}>{airQualityNivel}</Text>
+        <Text style={styles.airQualityNivel}>{airQualityNivel} de 500</Text>
       </View>
-
+      <Text style={styles.airQualityNumber}>{airQuality}</Text>
       <LinearGradient
         colors={[
           "#7e0023",
@@ -40,7 +38,11 @@ export default function AirQuality({ airQuality, airQualityNivel }) {
         start={{ x: 0, y: 1 }}
         end={{ x: 1, y: 0 }}
         style={styles.barra}>
-        <View style={[styles.indicador /*{ right: indicadorPos }*/]}></View>
+        <View
+          style={[
+            styles.indicador,
+            { right: isNaN(indicadorPos) ? 0 : indicadorPos },
+          ]}></View>
       </LinearGradient>
     </View>
   );
@@ -78,17 +80,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   airQualityNumber: {
-    fontSize: 30,
+    fontSize: 22,
     fontWeight: "500",
     marginStart: 10,
     color: "#FFF",
   },
   airQualityNivel: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: "500",
     color: "#e7e7e7",
-    marginTop: 10,
-    marginStart: 40,
+    marginTop: 7,
+    marginStart: 10,
   },
   barra: {
     flexDirection: "row",

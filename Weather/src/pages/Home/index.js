@@ -12,7 +12,24 @@ import useWeatherStore from "../../scripts/useWeatherStore";
 import useLocationStore from "../../scripts/useLocationStore";
 import { CurrentLoc, SearchCity } from "../../api/Api";
 //
-var Tempo = "Rain"; //climaAtual.clima; ddfds
+
+const getClima = {
+  Clear: "Céu limpo",
+  Clouds: "Nublado",
+  Rain: "Chuvoso",
+  Drizzle: "Chuvisco",
+  Thunderstorm: "Tempestade com raios",
+  Snow: "Neve",
+  Mist: "Neblina",
+  Smoke: "Fumaça",
+  Haze: "Nevoeiro",
+  Dust: "Poeira",
+  Fog: "Nevoeiro",
+  Sand: "Tempestade de Areia",
+  Ash: "Cinzas",
+  Squall: "Rajadas de vento",
+  Tornado: "Tornado",
+};
 
 const getGradientColors = {
   Dia: ["#29B2DD", "#33AADD", "#1A73C0"],
@@ -27,6 +44,15 @@ const getGradientLocations = {
   Noite: [0.2, 0.9, 0.95],
   Clouds: [0.1, 0.7, 0.9],
   Rain: [0, 0.25, 0.75],
+};
+
+const getAqi = {
+  1: "Bom",
+  2: "Regular",
+  3: "Moderado",
+  4: "Ruim",
+  5: "Muito Ruim",
+  default: "",
 };
 
 export default function Home() {
@@ -51,8 +77,11 @@ export default function Home() {
     fetchData();
   }, []);
 
+  const Tempo = climaAtual?.ClimaData?.clima;
   const localizacaoGradient = getGradientLocations[Tempo];
   const colorsGradient = getGradientColors[Tempo] ?? getGradientColors.default;
+  const aqi =
+    getAqi[climaAtual?.AirQuality?.AirQualityData?.aqi] ?? getAqi.default;
 
   return (
     <LinearGradient
@@ -84,10 +113,13 @@ export default function Home() {
             visibilidade={climaAtual?.ClimaData.visibilidade}
             pressao={climaAtual?.ClimaData.pressao}
           />
-          <AirQuality /*airQuality={airQualityData} airQualityNivel={aqiNivel}*/
+          <AirQuality
+            airQuality={aqi}
+            airQualityNivel={climaAtual?.AirQuality?.AqiNivel}
           />
           <SunTime
-          /*sunrise={climaAtual.sunrise} sunset={climaAtual.sunset}*/
+            sunrise={climaAtual?.ClimaData?.sunrise}
+            sunset={climaAtual?.ClimaData?.sunset}
           />
           <Footer />
           {/*  */}
