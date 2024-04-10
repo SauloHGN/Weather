@@ -25,31 +25,24 @@ export const CurrentLoc = async function (loc) {
   //return{ClimaData, DadosSlider}
   const [ClimaData, Foorecast, AirQuality] = await Promise.all([
     StartLocationData(lat, lon),
-    temp(),
-    //ForecastWeek(lat, lon),
+    ForecastWeek(lat, lon),
     AirPollution(lat, lon),
   ]);
   return { ClimaData, Foorecast, AirQuality };
-
-  /*VerificarLoc(lat, lon);
-  let ClimaData = StartLocationData(lat, lon);
-  return { ClimaData, DadosSlider, DadosWeekTemp, AirQualityData, AqiNivel };*/
-};
-
-const temp = () => {
-  return null;
 };
 
 // Pesquisa da Privisão do tempo
-export const SearchCity = (searchText) => {
+export const SearchCity = async (searchText) => {
   city = searchText;
-  let ClimaData = ClimaAtual(city);
-  let { DadosSlider, DadosWeekTemp } = ForecastWeek(
-    ClimaData.lat,
-    ClimaData.lon
-  );
-  let { AirQualityData, AqiNivel } = AirPollution(ClimaData.lat, ClimaData.lon);
-  return { ClimaData, DadosSlider, DadosWeekTemp, AirQualityData, AqiNivel };
+
+  const ClimaData = ClimaAtual(city);
+
+  const [Foorecast, AirQuality] = await Promise.all([
+    ClimaAtual(city),
+    ForecastWeek(ClimaData.lat, ClimaData.lon),
+    AirPollution(ClimaData.lat, ClimaData.lon),
+  ]);
+  return { ClimaData, Foorecast, AirQuality };
 };
 
 export const ClimaAtual = async function (city) {
@@ -58,11 +51,34 @@ export const ClimaAtual = async function (city) {
     const response = await fetch(url);
     const data = await response.json();
 
-    //console.log("-------------------------------------------------------");
-    //console.log(data);
-    //console.log("-------------------------------------------------------");
+    let visibilidadeBruta = data?.visibility;
 
-    let ClimaData = getClimaData(data);
+    const ClimaData = {
+      lat: data?.coord?.lat,
+      lon: data?.coord?.lon,
+      temperatura: Math.round(data?.main?.temp),
+      clima: data?.weather[0].main,
+      maxTemp: Math.round(data?.main?.temp_max),
+      minTemp: Math.round(data?.main?.temp_min),
+      sensacao: Math.round(data?.main?.feels_like),
+      pressao: data?.main?.pressure,
+      umidade: data?.main?.humidity,
+      velVento: Math.round(data?.wind?.speed),
+      visibilidade:
+        visibilidadeBruta < 1000
+          ? `${visibilidadeBruta} m`
+          : `${visibilidadeBruta / 1000} km/h`,
+      sunrise: new Date(data?.sys?.sunrise * 1000).toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+      sunset: new Date(data?.sys?.sunset * 1000).toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+      cidade: data?.name,
+      paisCode: data?.sys?.country,
+    };
 
     return ClimaData;
   } catch (error) {
@@ -127,26 +143,15 @@ export const StartLocationData = async function (lat, lon) {
   //
 };
 
-const getClimaData = function (data) {
-  //const setWeatherData = useWeatherStore.getState().setWeatherData;
-  //setWeatherData("ClimaData", ClimaData);
-  return ClimaData;
-};
-
 export const ForecastWeek = async function (currentLatitude, currentLongitude) {
   let lat = currentLatitude;
   let lon = currentLongitude;
 
   let url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=${lang}`;
 
-  //console.log("URL: ", url);
-
   try {
     const response = await fetch(url);
     const data = await response.json();
-    //console.log("-------------------------------------------------------");
-    //console.log(data);
-    //console.log("-------------------------------------------------------");
 
     let DadosSlider =
       data.list && data.list.length >= 16
@@ -157,15 +162,17 @@ export const ForecastWeek = async function (currentLatitude, currentLongitude) {
           }))
         : [];
 
-    let DadosWeekTemp = {};
+    let DadosWeekTemp = {}; // necessita Revisão de logica
     if (data.list && Array.isArray(data.list)) {
       data.list.forEach((item) => {
         const date = item.dt_txt.split(" ")[0]; // Obter a data
+        const dateFormat = formatarData(date);
         if (
-          !DadosWeekTemp[date] ||
-          item.main.temp_max > DadosWeekTemp[date].temp_max
+          !DadosWeekTemp[dateFormat] ||
+          item.main.temp_max > DadosWeekTemp[dateFormat].temp_max
         ) {
-          DadosWeekTemp[date] = {
+          DadosWeekTemp[dateFormat] = {
+            date: dateFormat,
             temp_max: item.main.temp_max,
             temp_min: item.main.temp_min,
           };
@@ -182,6 +189,11 @@ export const ForecastWeek = async function (currentLatitude, currentLongitude) {
       [{ text: "Ok" }]
     );
   }
+};
+
+const formatarData = (data) => {
+  const partes = data.split("-");
+  return `${partes[2]}/${partes[1]}/${partes[0]}`;
 };
 
 export const AirPollution = async function (currentLatitude, currentLongitude) {
@@ -221,13 +233,4 @@ export const AirPollution = async function (currentLatitude, currentLongitude) {
     console.error(error);
     return { AqiNivel: -1, AirQualityData: {} };
   }
-};
-
-const VerificarLoc = function (lat, lon) {
-  if (lat == null || lon == null) {
-    lat = "-23.5475";
-    lon = "-46.6361";
-  }
-
-  return { lat, lon };
 };

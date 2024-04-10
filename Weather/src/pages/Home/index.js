@@ -29,21 +29,22 @@ const getClima = {
   Ash: "Cinzas",
   Squall: "Rajadas de vento",
   Tornado: "Tornado",
+  default: "",
 };
 
 const getGradientColors = {
   Dia: ["#29B2DD", "#33AADD", "#1A73C0"],
   Noite: ["#1E2B58", "#353283", "#48459A"],
-  Clouds: ["#A6ACB8", "#848482", "#696969"],
-  Rain: ["#7B97AB", "#759696", "#4D5665"],
+  Nublado: ["#A6ACB8", "#1e9ed2", "#0092ff"],
+  Chuvoso: ["#7B97AB", "#759696", "#4D5665"],
   default: ["#18181B", "#18181B"],
 };
 
 const getGradientLocations = {
   Dia: [0.2, 0.3, 0.65],
   Noite: [0.2, 0.9, 0.95],
-  Clouds: [0.1, 0.7, 0.9],
-  Rain: [0, 0.25, 0.75],
+  Nublado: [0.3, 0.6, 0.8],
+  Chuvoso: [0, 0.25, 0.75],
 };
 
 const getAqi = {
@@ -68,6 +69,7 @@ export default function Home() {
           const dados = await CurrentLoc(loc);
           setStart(false);
           setClimaAtual(dados);
+          //console.log(dados);
         }
       } catch (error) {
         console.error("Erro ao obter dados de localização:", error);
@@ -77,9 +79,11 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const Tempo = climaAtual?.ClimaData?.clima;
-  const localizacaoGradient = getGradientLocations[Tempo];
+  const Tempo = getClima[climaAtual?.ClimaData?.clima] ?? getClima.default;
+  console.log(Tempo);
   const colorsGradient = getGradientColors[Tempo] ?? getGradientColors.default;
+  const localizacaoGradient = getGradientLocations[Tempo];
+
   const aqi =
     getAqi[climaAtual?.AirQuality?.AirQualityData?.aqi] ?? getAqi.default;
 
@@ -97,7 +101,7 @@ export default function Home() {
         <ScrollView>
           <Header
             temperatura={climaAtual?.ClimaData.temperatura}
-            clima={climaAtual?.ClimaData.clima}
+            clima={Tempo}
             maxTemp={climaAtual?.ClimaData.maxTemp}
             minTemp={climaAtual?.ClimaData.minTemp}
             loc={climaAtual?.ClimaData.cidade}
@@ -106,7 +110,7 @@ export default function Home() {
             time="dia"
           />
           <Slider />
-          <WeekTemp />
+          <WeekTemp props={climaAtual?.Foorecast.DadosWeekTemp} />
           <Circles
             umidade={climaAtual?.ClimaData.umidade}
             vento={climaAtual?.ClimaData.velVento}
